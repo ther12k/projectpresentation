@@ -256,10 +256,7 @@ export const projects = {
         status: 'Planned',
         tasks: [
           'Complete pending UATs',
-          'System optimization and bug fixes',
-          'Documentation updates',
-          'Performance testing',
-          'User training sessions'
+          'System optimization and bug fixes'
         ]
       }
     ]
