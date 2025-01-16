@@ -10,6 +10,15 @@ export const projects = {
           { task: 'Remediasi JAGS Server', pic: 'Isra', progress: 100 },
           { task: 'Update CP for payment slip', pic: 'Rizky', progress: 100 }
         ],
+        timeline: {
+          start: '2025-01-15',
+          end: '2025-01-17',
+          schedule: {
+            '2025-01-15': 'yellow',
+            '2025-01-16': 'green',
+            '2025-01-17': 'green'
+          }
+        },
         challenges: []
       },
       {
@@ -19,6 +28,20 @@ export const projects = {
         tasks: [
           { task: 'OCR UAT', pic: 'Isra', progress: 80 }
         ],
+        timeline: {
+          start: '2025-01-15',
+          end: '2025-01-26',
+          schedule: {
+            '2025-01-15': 'red',
+            '2025-01-16': 'red',
+            '2025-01-17': 'red',
+            '2025-01-18': 'red',
+            '2025-01-19': 'red',
+            '2025-01-20': 'red',
+            '2025-01-25': 'red',
+            '2025-01-26': 'red'
+          }
+        },
         challenges: []
       },
       {
@@ -31,6 +54,15 @@ export const projects = {
           { task: 'SIT', pic: 'Deja/David', progress: 90 },
           { task: 'UAT', pic: 'Deja/David', progress: 0 }
         ],
+        timeline: {
+          start: '2025-01-15',
+          end: '2025-01-26',
+          schedule: {
+            '2025-01-15': 'yellow',
+            '2025-01-16': 'yellow',
+            '2025-01-25': 'green'
+          }
+        },
         challenges: ['untuk QR transaksi berubah, hanya validasi out']
       },
       {
@@ -43,6 +75,17 @@ export const projects = {
           { task: 'Settlement (Automatic)', pic: 'Rizky', progress: 50 },
           { task: 'Monitoring Transaction', pic: 'Rizky', progress: 0 }
         ],
+        timeline: {
+          start: '2025-01-15',
+          end: '2025-01-19',
+          schedule: {
+            '2025-01-15': 'yellow',
+            '2025-01-16': 'yellow',
+            '2025-01-17': 'green',
+            '2025-01-18': 'green',
+            '2025-01-19': 'green'
+          }
+        },
         challenges: []
       },
       {
@@ -53,6 +96,17 @@ export const projects = {
           { task: 'Autogate New UAT', pic: 'Rizky/David', progress: 80 },
           { task: 'Autogate New - Bug fix rtid double', pic: 'Rizky', progress: 50 }
         ],
+        timeline: {
+          start: '2025-01-15',
+          end: '2025-01-19',
+          schedule: {
+            '2025-01-15': 'yellow',
+            '2025-01-16': 'green',
+            '2025-01-17': 'green',
+            '2025-01-18': 'green',
+            '2025-01-19': 'green'
+          }
+        },
         challenges: []
       },
       {
@@ -62,6 +116,11 @@ export const projects = {
         tasks: [
           { task: 'Kolom Full/Empty di container', pic: 'Deja', progress: 0 }
         ],
+        timeline: {
+          start: '2025-01-15',
+          end: '2025-01-31',
+          schedule: {}
+        },
         challenges: []
       },
       {
@@ -72,6 +131,15 @@ export const projects = {
           { task: 'Autogate New UAT', pic: 'David/Deja', progress: 80 },
           { task: 'Flow Autohold/P2 Check', pic: '', progress: 0 }
         ],
+        timeline: {
+          start: '2025-01-15',
+          end: '2025-01-19',
+          schedule: {
+            '2025-01-17': 'green',
+            '2025-01-18': 'green',
+            '2025-01-19': 'green'
+          }
+        },
         challenges: []
       },
       {
@@ -83,7 +151,22 @@ export const projects = {
           { task: 'Biro hukum - Portal ke biro hukum', pic: 'Rizky/Iqbal', progress: 70 },
           { task: 'LMIS Integration', pic: 'Rizky/Iqbal', progress: 10 }
         ],
-        challenges: []
+        timeline: {
+          start: '2025-01-15',
+          end: '2025-01-31',
+          schedule: {
+            '2025-01-15': 'yellow',
+            '2025-01-16': 'yellow',
+            '2025-01-17': 'green',
+            '2025-01-18': 'green',
+            '2025-01-19': 'green',
+            '2025-01-25': 'yellow',
+            '2025-01-26': 'yellow',
+            '2025-01-27': 'yellow',
+            '2025-01-31': 'green'
+          }
+        },
+        challenges: ['Perlu meeting dengan tim validator','Perlu meeting dengan tim integrasi lembaga baru']
       },
       {
         name: 'IKT International',
@@ -94,6 +177,17 @@ export const projects = {
           { task: 'Dashboard API', pic: 'Rizky', progress: 80 },
           { task: 'Dashboard Web', pic: 'Iqbal', progress: 80 }
         ],
+        timeline: {
+          start: '2025-01-15',
+          end: '2025-01-19',
+          schedule: {
+            '2025-01-15': 'yellow',
+            '2025-01-16': 'yellow',
+            '2025-01-17': 'green',
+            '2025-01-18': 'green',
+            '2025-01-19': 'green'
+          }
+        },
         challenges: []
       },
       {
@@ -104,6 +198,16 @@ export const projects = {
           { task: 'API Integration', pic: '', progress: 0 },
           { task: 'AMS Web - Xray Implementation', pic: '', progress: 0 }
         ],
+        timeline: {
+          start: '2025-01-25',
+          end: '2025-01-31',
+          schedule: {
+            '2025-01-25': 'yellow',
+            '2025-01-26': 'yellow',
+            '2025-01-27': 'yellow',
+            '2025-01-31': 'yellow'
+          }
+        },
         challenges: ['Resource kurang']
       },
       {
@@ -114,6 +218,11 @@ export const projects = {
           { task: 'Interview awal', pic: 'Rizky/Deni', progress: 100 },
           { task: 'Soal', pic: '', progress: 0 }
         ],
+        timeline: {
+          start: '2025-01-15',
+          end: '2025-01-31',
+          schedule: {}
+        },
         challenges: []
       }
     ],
@@ -126,7 +235,7 @@ export const projects = {
           'Finalize TJS Autogate implementation',
           'Complete Kalibaru CA Autogate settlement system',
           'Deploy Kemenag SIPPRO validator updates',
-          'Launch New IKT International dashboard'
+          'Launch IKT International dashboard'
         ]
       }
     ],
@@ -148,6 +257,9 @@ export const projects = {
         tasks: [
           'Complete pending UATs',
           'System optimization and bug fixes',
+          'Documentation updates',
+          'Performance testing',
+          'User training sessions'
         ]
       }
     ]
