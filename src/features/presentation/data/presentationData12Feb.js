@@ -3,7 +3,7 @@ export const projects = {
     {
       name: "TSJ Autogate",
       status: "In Progress",
-      progress: 72.5, // Average of all task progresses
+      progress: 72.5,
       tasks: [
         { task: "Autogate", pic: "Deja", progress: 100 },
         { task: "AMS", pic: "Deja", progress: 100 },
@@ -11,7 +11,7 @@ export const projects = {
         { task: "UAT", pic: "Deja/David", progress: 0 }
       ],
       timeline: {
-        start: "2025-02-08",
+        start: "2025-02-09",
         end: "2025-02-23",
         schedule: {
           "2025-02-15": "red",
@@ -23,7 +23,7 @@ export const projects = {
     {
       name: "Kalibaru CA Autogate",
       status: "In Progress",
-      progress: 58.3, // Average of task progresses
+      progress: 58.3,
       tasks: [
         { task: "Mobile Web App (Autogate)", pic: "Rizky/Iqbal", progress: 10 },
         { task: "Payment/Emoney", pic: "Rizky", progress: 100 },
@@ -33,10 +33,10 @@ export const projects = {
         { task: "Service/cp for enhance truckin process", pic: "Rizky", progress: 20 }
       ],
       timeline: {
-        start: "2025-02-08",
+        start: "2025-02-09",
         end: "2025-02-23",
         schedule: {
-          "2025-02-08": "yellow",
+          "2025-02-09": "yellow",
           "2025-02-15": "yellow",
           "2025-02-16": "green",
           "2025-02-17": "yellow",
@@ -54,7 +54,7 @@ export const projects = {
         { task: "Autogate New : Bug fix rfid double", pic: "Rizky", progress: 100 }
       ],
       timeline: {
-        start: "2025-02-08",
+        start: "2025-02-09",
         end: "2025-02-23",
         schedule: {
           "2025-02-15": "red"
@@ -71,7 +71,7 @@ export const projects = {
         { task: "Add user CM", pic: "Deja/David", progress: 0 }
       ],
       timeline: {
-        start: "2025-02-08",
+        start: "2025-02-09",
         end: "2025-02-23",
         schedule: {}
       },
@@ -86,7 +86,7 @@ export const projects = {
         { task: "Flow Autohold/P2 Check", pic: "", progress: 0 }
       ],
       timeline: {
-        start: "2025-02-08",
+        start: "2025-02-09",
         end: "2025-02-23",
         schedule: {
           "2025-02-15": "red"
@@ -104,7 +104,7 @@ export const projects = {
         { task: "Lembaga Baru Integration", pic: "Rizky/Iqbal/David", progress: 40 }
       ],
       timeline: {
-        start: "2025-02-08",
+        start: "2025-02-09",
         end: "2025-02-23",
         schedule: {
           "2025-02-17": "green"
@@ -122,7 +122,7 @@ export const projects = {
         { task: "Dashboard Web", pic: "Iqbal", progress: 70 }
       ],
       timeline: {
-        start: "2025-02-08",
+        start: "2025-02-09",
         end: "2025-02-23",
         schedule: {
           "2025-02-17": "green"
@@ -139,7 +139,7 @@ export const projects = {
         { task: "AMS Web : Xray Implementation", pic: "Rizky/Iqbal/David", progress: 30 }
       ],
       timeline: {
-        start: "2025-02-08",
+        start: "2025-02-09",
         end: "2025-02-23",
         schedule: {
           "2025-02-17": "green"
