@@ -1,19 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import ProgressBar from '../shared/ProgressBar';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, X } from 'lucide-react';
 
 const ProjectStatusSlide = ({ content }) => {
-  const [selectedPic, setSelectedPic] = useState(null);
+  const [selectedPics, setSelectedPics] = useState(new Set());
   const [expandedProjects, setExpandedProjects] = useState({});
 
-  // Filter projects based on the selected PIC
-  const filteredProjects = selectedPic
-    ? content.projects.filter((project) =>
-        project.tasks.some((task) => 
-          task.pic.split('/').includes(selectedPic)
-        )
+  // Get unique PICs from all tasks
+  const uniquePics = useMemo(() => {
+    const picsSet = new Set();
+    content.projects.forEach(project => 
+      project.tasks.forEach(task => 
+        task.pic.split('/').forEach(pic => picsSet.add(pic))
       )
-    : content.projects;
+    );
+    return Array.from(picsSet);
+  }, [content.projects]);
+
+  // Toggle PIC selection
+  const togglePic = (pic) => {
+    setSelectedPics(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(pic)) {
+        newSet.delete(pic);
+      } else {
+        newSet.add(pic);
+      }
+      return newSet;
+    });
+  };
+
+  // Filter projects based on selected PICs
+  const filteredProjects = useMemo(() => {
+    if (selectedPics.size === 0) return content.projects;
+    return content.projects.filter(project =>
+      project.tasks.some(task =>
+        task.pic.split('/').some(pic => selectedPics.has(pic))
+      )
+    );
+  }, [content.projects, selectedPics]);
 
   // Toggle project expansion
   const toggleProject = (projectName) => {
@@ -23,22 +48,22 @@ const ProjectStatusSlide = ({ content }) => {
     }));
   };
 
-  // Render PIC names with individual click handlers
+  // Render individual PIC names with click handlers
   const renderPICs = (picString) => {
     const pics = picString.split('/');
     
     return (
-      <div className="flex gap-1 text-xs">
-        <span>PIC: </span>
+      <div className="flex gap-1 text-xs items-center">
+        <span>PIC:</span>
         {pics.map((pic, index) => (
           <React.Fragment key={pic}>
             <span
               onClick={(e) => {
                 e.stopPropagation();
-                setSelectedPic(pic);
+                togglePic(pic);
               }}
               className={`cursor-pointer hover:text-blue-700 ${
-                selectedPic === pic ? 'text-blue-700 font-medium' : 'text-blue-600'
+                selectedPics.has(pic) ? 'text-blue-700 font-medium' : 'text-blue-600'
               }`}
             >
               {pic}
@@ -52,19 +77,38 @@ const ProjectStatusSlide = ({ content }) => {
 
   return (
     <div className="p-8 bg-white rounded-lg">
-      <h2 className="text-2xl font-bold text-gray-900 mb-8">Project Status Overview</h2>
+      <div className="flex flex-col space-y-4">
+        <h2 className="text-2xl font-bold text-gray-900">Project Status Overview</h2>
+        
+        {/* PIC Filter Section */}
+        <div className="flex flex-wrap gap-2 items-center">
+          <span className="text-sm text-gray-600">Filter by PIC:</span>
+          {uniquePics.map(pic => (
+            <button
+              key={pic}
+              onClick={() => togglePic(pic)}
+              className={`inline-flex items-center px-3 py-1 rounded-full text-sm ${
+                selectedPics.has(pic)
+                  ? 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+            >
+              {pic}
+              {selectedPics.has(pic) && (
+                <X 
+                  className="w-3 h-3 ml-1" 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    togglePic(pic);
+                  }}
+                />
+              )}
+            </button>
+          ))}
+        </div>
+      </div>
 
-      {/* Reset Filter Button */}
-      {selectedPic && (
-        <button
-          onClick={() => setSelectedPic(null)}
-          className="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-        >
-          Show All Projects
-        </button>
-      )}
-
-      <div className="space-y-3">
+      <div className="space-y-3 mt-6">
         {filteredProjects.map((project, index) => (
           <div
             key={index}
@@ -86,7 +130,7 @@ const ProjectStatusSlide = ({ content }) => {
                 <span className="text-sm text-gray-600">{project.progress}%</span>
               </div>
 
-              {/* Project Progress Bar - Always Visible */}
+              {/* Project Progress Bar */}
               <div className="mt-2">
                 <div className="w-full bg-gray-200 rounded-full h-2">
                   <div
@@ -101,7 +145,10 @@ const ProjectStatusSlide = ({ content }) => {
             {expandedProjects[project.name] && (
               <div className="px-4 pb-4 border-t border-blue-100">
                 {project.tasks
-                  .filter((task) => !selectedPic || task.pic.split('/').includes(selectedPic))
+                  .filter(task => 
+                    selectedPics.size === 0 || 
+                    task.pic.split('/').some(pic => selectedPics.has(pic))
+                  )
                   .map((task, taskIndex) => (
                     <div
                       key={taskIndex}
@@ -121,7 +168,6 @@ const ProjectStatusSlide = ({ content }) => {
                           {task.progress}%
                         </span>
                       </div>
-
                       {renderPICs(task.pic)}
                     </div>
                   ))}
