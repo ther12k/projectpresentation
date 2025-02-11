@@ -64,6 +64,30 @@ const ProjectStatusAndChallenges = ({ content }) => {
 
   const dates = getDates();
 
+  const getCellBackground = (date, task, project) => {
+    const dayOfWeek = date.getDay();
+    const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+    
+    if (isWeekend) {
+      return 'bg-red-50';
+    }
+
+    if (!project.timeline?.schedule) {
+      return '';
+    }
+
+    const dateStr = date.toISOString().split('T')[0];
+    const scheduleStatus = project.timeline.schedule[dateStr];
+
+    if (scheduleStatus === 'yellow') {
+      return 'bg-yellow-100';
+    } else if (scheduleStatus === 'green') {
+      return 'bg-green-100';
+    }
+
+    return '';
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       if (headerRowRef.current) {
@@ -81,29 +105,6 @@ const ProjectStatusAndChallenges = ({ content }) => {
       tableContainerRef?.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  // Fungsi pembantu untuk menentukan apakah suatu tanggal berada dalam rentang warna kuning
-  const isDateInRange = (date, schedule) => {
-    const dateString = date.toLocaleDateString('en-CA');
-    if (!schedule) return false;
-
-    const scheduleDates = Object.keys(schedule);
-    if (scheduleDates.includes(dateString)) {
-      return schedule[dateString] === 'yellow';
-    }
-
-    // Periksa untuk rentang warna kuning
-    for (let i = 0; i < scheduleDates.length; i++) {
-      const scheduledDate = new Date(scheduleDates[i]);
-      const nextDate = new Date(scheduledDate);
-      nextDate.setDate(scheduledDate.getDate() + 1);
-
-      if (schedule[scheduleDates[i]] === 'yellow' && date >= scheduledDate && date < nextDate) {
-        return true;
-      }
-    }
-    return false;
-  };
 
   return (
     <div className="p-8 bg-white rounded-lg shadow-md">
@@ -164,8 +165,9 @@ const ProjectStatusAndChallenges = ({ content }) => {
       </div>
 
       {/* Tampilan Google Sheet */}
+      
       {activeSheetView && (
-        <div className="overflow-x-auto table-container shadow-sm border border-gray-200 rounded-lg">
+        <div className="overflow-x-auto table-container shadow-sm border border-gray-200 rounded-lg mt-4">
           <table className="min-w-full divide-y divide-gray-200 table-auto">
             <thead className="bg-gray-50 sticky top-0 z-10" ref={headerRowRef}>
               <tr>
@@ -190,7 +192,7 @@ const ProjectStatusAndChallenges = ({ content }) => {
                     <th
                       key={index}
                       className={`w-[60px] px-2 py-3 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider ${
-                        isWeekend ? 'bg-red-50' : 'bg-gray-50'
+                        isWeekend ? 'bg-red-50' : ''
                       } ${isToday ? 'ring-2 ring-blue-500' : ''}`}
                     >
                       <div className="flex flex-col">
@@ -248,25 +250,18 @@ const ProjectStatusAndChallenges = ({ content }) => {
                         }`}
                       >
                         {task.progress}%
-                        {task.progress > 0 && task.progress < 100 && ';'}
                       </span>
                     </td>
-                    {dates.map((date, dateIndex) => {
-                      const dayOfWeek = date.getDay();
-                      const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-                      const isToday = date.toDateString() === new Date().toDateString();
-
-                      return (
-                        <td
-                          key={dateIndex}
-                          className={`px-2 py-3 text-center text-xs border-r border-gray-100 ${
-                            isWeekend ? 'bg-red-50' : 'bg-white'
-                          } ${isToday ? 'ring-2 ring-blue-500' : ''}`}
-                        >
-                          {/* Add your timeline indicators here */}
-                        </td>
-                      );
-                    })}
+                    {dates.map((date, dateIndex) => (
+                      <td
+                        key={dateIndex}
+                        className={`px-2 py-3 text-center text-xs border-r border-gray-100 ${getCellBackground(
+                          date,
+                          task,
+                          project
+                        )}`}
+                      />
+                    ))}
                   </tr>
                 ))
               )}
@@ -274,7 +269,7 @@ const ProjectStatusAndChallenges = ({ content }) => {
           </table>
         </div>
       )}
-
+      
       {!activeSheetView && (
         <div className="space-y-3 mt-6">
           {filteredProjects.map((project, index) => (
