@@ -9,7 +9,9 @@ const ProjectStatusSlide = ({ content }) => {
   // Filter projects based on the selected PIC
   const filteredProjects = selectedPic
     ? content.projects.filter((project) =>
-        project.tasks.some((task) => task.pic === selectedPic)
+        project.tasks.some((task) => 
+          task.pic.split('/').includes(selectedPic)
+        )
       )
     : content.projects;
 
@@ -19,6 +21,33 @@ const ProjectStatusSlide = ({ content }) => {
       ...prev,
       [projectName]: !prev[projectName]
     }));
+  };
+
+  // Render PIC names with individual click handlers
+  const renderPICs = (picString) => {
+    const pics = picString.split('/');
+    
+    return (
+      <div className="flex gap-1 text-xs">
+        <span>PIC: </span>
+        {pics.map((pic, index) => (
+          <React.Fragment key={pic}>
+            <span
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedPic(pic);
+              }}
+              className={`cursor-pointer hover:text-blue-700 ${
+                selectedPic === pic ? 'text-blue-700 font-medium' : 'text-blue-600'
+              }`}
+            >
+              {pic}
+            </span>
+            {index < pics.length - 1 && <span>/</span>}
+          </React.Fragment>
+        ))}
+      </div>
+    );
   };
 
   return (
@@ -72,7 +101,7 @@ const ProjectStatusSlide = ({ content }) => {
             {expandedProjects[project.name] && (
               <div className="px-4 pb-4 border-t border-blue-100">
                 {project.tasks
-                  .filter((task) => !selectedPic || task.pic === selectedPic)
+                  .filter((task) => !selectedPic || task.pic.split('/').includes(selectedPic))
                   .map((task, taskIndex) => (
                     <div
                       key={taskIndex}
@@ -93,14 +122,7 @@ const ProjectStatusSlide = ({ content }) => {
                         </span>
                       </div>
 
-                      <p
-                        onClick={() => setSelectedPic(task.pic)}
-                        className={`text-xs cursor-pointer hover:text-blue-700 ${
-                          selectedPic === task.pic ? 'text-blue-700' : 'text-blue-600'
-                        }`}
-                      >
-                        PIC: {task.pic}
-                      </p>
+                      {renderPICs(task.pic)}
                     </div>
                   ))}
               </div>
