@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { projects } from './data/presentationData';
+import { projects } from './data/presentationData12Feb';
 import PresentationControls from './components/PresentationControls';
 import {
   TitleSlide,
@@ -9,6 +9,7 @@ import {
   WeeklyPlanSlide
 } from './components/slides';
 import { Card, CardContent } from '../../components/ui/card';
+import ProjectStatusAndChallenges from './components/slides/ProjectStatusAndChallenges';
 
 const ProjectPresentation = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -19,7 +20,7 @@ const ProjectPresentation = () => {
       type: 'title',
       content: {
         title: 'Project Status Updates',
-        date: '15 January 2025'
+        date: '12 February 2025'
       }
     },
     {
@@ -28,12 +29,12 @@ const ProjectPresentation = () => {
         projects: projects.projectStatus
       }
     },
-    {
-      type: 'challenges',
-      content: {
-        projects: projects.projectStatus
-      }
-    },
+    // {
+    //   type: 'challenges',
+    //   content: {
+    //     projects: projects.projectStatus
+    //   }
+    // },
     {
       type: 'monthlyPlan',
       content: {
@@ -60,9 +61,7 @@ const ProjectPresentation = () => {
       case 'title':
         return <TitleSlide content={slide.content} />;
       case 'projectStatus':
-        return <ProjectStatusSlide content={slide.content} />;
-      case 'challenges':
-        return <ChallengesSlide content={slide.content} />;
+        return <ProjectStatusAndChallenges content={slide.content} />;
       case 'monthlyPlan':
         return <MonthlyPlanSlide content={slide.content} />;
       case 'weeklyPlan':
@@ -76,10 +75,10 @@ const ProjectPresentation = () => {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       <div className="container mx-auto px-4 py-8 h-screen flex flex-col">
         {/* Header */}
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <h1 className="text-2xl font-semibold text-gray-700">Project Status Dashboard</h1>
           <div className="h-1 w-20 bg-blue-500 mt-2"></div>
-        </div>
+        </div> */}
 
         {/* Main Content */}
         <Card className="flex-1 relative rounded-xl shadow-lg overflow-hidden bg-white border-0">
