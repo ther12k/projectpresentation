@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import ProgressBar from '../shared/ProgressBar';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const ProjectStatusSlide = ({ content }) => {
   const [selectedPic, setSelectedPic] = useState(null);
+  const [expandedProjects, setExpandedProjects] = useState({});
 
   // Filter projects based on the selected PIC
   const filteredProjects = selectedPic
@@ -11,66 +13,98 @@ const ProjectStatusSlide = ({ content }) => {
       )
     : content.projects;
 
+  // Toggle project expansion
+  const toggleProject = (projectName) => {
+    setExpandedProjects(prev => ({
+      ...prev,
+      [projectName]: !prev[projectName]
+    }));
+  };
+
   return (
-    <div className="p-8 bg-gradient-to-b from-gray-100 via-gray-50 to-white rounded-lg shadow-lg">
-      <h2 className="text-4xl font-bold text-gray-800 mb-8">Project Status Overview</h2>
+    <div className="p-8 bg-white rounded-lg">
+      <h2 className="text-2xl font-bold text-gray-900 mb-8">Project Status Overview</h2>
 
       {/* Reset Filter Button */}
       {selectedPic && (
         <button
           onClick={() => setSelectedPic(null)}
-          className="mb-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+          className="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
         >
           Show All Projects
         </button>
       )}
 
-      <div className="space-y-8">
+      <div className="space-y-3">
         {filteredProjects.map((project, index) => (
           <div
             key={index}
-            className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow"
+            className="bg-blue-50 rounded-lg shadow-sm"
           >
-            {/* Project Header */}
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-2xl font-semibold text-blue-700">{project.name}</h3>
-              <span className="text-lg font-medium text-gray-700">{project.progress}%</span>
-            </div>
+            {/* Project Header - Always Visible */}
+            <div 
+              className="px-4 py-3 cursor-pointer"
+              onClick={() => toggleProject(project.name)}
+            >
+              <div className="flex justify-between items-center">
+                <div className="flex items-center space-x-2">
+                  {expandedProjects[project.name] ? 
+                    <ChevronUp className="text-blue-600 w-4 h-4" /> : 
+                    <ChevronDown className="text-blue-600 w-4 h-4" />
+                  }
+                  <h3 className="text-blue-600 font-medium">{project.name}</h3>
+                </div>
+                <span className="text-sm text-gray-600">{project.progress}%</span>
+              </div>
 
-            {/* Project Progress Bar */}
-            <ProgressBar progress={project.progress} variant="primary" />
-
-            {/* Task Details */}
-            <div className="mt-6 space-y-4">
-              {project.tasks
-                .filter((task) => !selectedPic || task.pic === selectedPic) // Show only tasks for the selected PIC
-                .map((task, taskIndex) => (
+              {/* Project Progress Bar - Always Visible */}
+              <div className="mt-2">
+                <div className="w-full bg-gray-200 rounded-full h-2">
                   <div
-                    key={taskIndex}
-                    className="bg-gradient-to-r from-green-50 to-green-100 p-4 rounded-lg border border-green-200 hover:bg-green-200 transition-colors"
-                  >
-                    <div className="flex justify-between items-center mb-2">
-                      {/* Task Name and Progress */}
-                      <div className="flex flex-col flex-grow">
-                        <span className="font-medium text-gray-800">{task.task}</span>
-                        <ProgressBar progress={task.progress} variant="secondary" />
-                      </div>
-                      {/* Task Progress */}
-                      <span className="ml-4 text-sm font-medium text-gray-600">{task.progress}%</span>
-                    </div>
-
-                    {/* PIC Highlight and Clickable */}
-                    <p
-                      onClick={() => setSelectedPic(task.pic)}
-                      className={`text-sm font-semibold mt-2 cursor-pointer hover:underline ${
-                        selectedPic === task.pic ? 'text-purple-800' : 'text-purple-600'
-                      }`}
-                    >
-                      PIC: {task.pic}
-                    </p>
-                  </div>
-                ))}
+                    className="bg-blue-600 rounded-full h-2 transition-all duration-300"
+                    style={{ width: `${project.progress}%` }}
+                  />
+                </div>
+              </div>
             </div>
+
+            {/* Collapsible Task Details */}
+            {expandedProjects[project.name] && (
+              <div className="px-4 pb-4 border-t border-blue-100">
+                {project.tasks
+                  .filter((task) => !selectedPic || task.pic === selectedPic)
+                  .map((task, taskIndex) => (
+                    <div
+                      key={taskIndex}
+                      className="mt-3 bg-white p-3 rounded border border-gray-100"
+                    >
+                      <div className="flex justify-between items-center mb-2">
+                        <div className="flex flex-col flex-grow">
+                          <span className="text-sm text-gray-800">{task.task}</span>
+                          <div className="w-full bg-gray-100 rounded-full h-1.5 mt-2">
+                            <div
+                              className="bg-blue-500 rounded-full h-1.5"
+                              style={{ width: `${task.progress}%` }}
+                            />
+                          </div>
+                        </div>
+                        <span className="ml-4 text-xs text-gray-500">
+                          {task.progress}%
+                        </span>
+                      </div>
+
+                      <p
+                        onClick={() => setSelectedPic(task.pic)}
+                        className={`text-xs cursor-pointer hover:text-blue-700 ${
+                          selectedPic === task.pic ? 'text-blue-700' : 'text-blue-600'
+                        }`}
+                      >
+                        PIC: {task.pic}
+                      </p>
+                    </div>
+                  ))}
+              </div>
+            )}
           </div>
         ))}
       </div>
