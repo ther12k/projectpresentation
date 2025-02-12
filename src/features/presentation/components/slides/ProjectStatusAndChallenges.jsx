@@ -319,7 +319,7 @@ const ProjectStatusAndChallenges = ({ content }) => {
                                                 ) : (
                                                     <ChevronDown className="text-blue-600 w-4 h-4" />
                                                 )}
-                                                <h3 className="text-blue-600 font-medium">{project.name}</h3>
+                                                <h3 className="text-black-600 font-medium">{project.name}</h3>
                                                 {project.challenges?.length > 0 && (
                                                     <AlertTriangle className="w-4 h-4 text-amber-500" />
                                                 )}
@@ -354,7 +354,7 @@ const ProjectStatusAndChallenges = ({ content }) => {
                                                                     <span className="text-sm text-gray-800">{task.task}</span>
                                                                     <div className="w-full bg-gray-100 rounded-full h-1.5 mt-2">
                                                                         <div
-                                                                            className="bg-blue-500 rounded-full h-1.5"
+                                                                            className="bg-blue-300 rounded-full h-1.5"
                                                                             style={{ width: `${task.progress}%` }}
                                                                         />
                                                                     </div>
