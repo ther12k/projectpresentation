@@ -1,83 +1,39 @@
 export const projects = {
   projectStatus: [
     {
+      name: "KOJA OCR",
+      status: "In Progress",
+      progress: 100,
+      tasks: [
+        { task: "OCR UAT", pic: "Isra", progress: 100 }
+      ],
+      timeline: {
+        schedule: {
+          "2025-02-15": "red",
+          "2025-02-16": "red"
+        }
+      }
+    },
+    {
       name: "TSJ Autogate",
       status: "In Progress",
-      progress: 72.5,
+      progress: 68,
       tasks: [
         { task: "Autogate", pic: "Deja", progress: 100 },
         { task: "AMS", pic: "Deja", progress: 100 },
+        { task: "Mock service", pic: "Deja", progress: 50 },
         { task: "SIT", pic: "Deja/David", progress: 90 },
         { task: "UAT", pic: "Deja/David", progress: 0 }
       ],
       timeline: {
         schedule: {
           "2025-02-08": "yellow",
-          "2025-02-15": "yellow",
+          "2025-02-14": "green",
+          "2025-02-15": "red",
           "2025-02-17": "green"
         }
-      }
-    },
-    {
-      name: "Palembang Autogate",
-      status: "Planned",
-      progress: 0,
-      tasks: [
-        { task: "Kolom Full/Empty di container", pic: "Deja", progress: 0 },
-        { task: "Add user CM", pic: "Deja/David", progress: 0 }
-      ],
-      timeline: {
-        schedule: {}
-      }
-    },
-    {
-      name: "Pontianak Autogate",
-      status: "In Progress",
-      progress: 100,
-      tasks: [
-        { task: "Autogate New UAT", pic: "David/Deja", progress: 100 },
-        { task: "Flow Autohold/P2 Check", pic: "", progress: 0 }
-      ],
-      timeline: {
-        schedule: {
-          "2025-02-15": "yellow",
-          "2025-02-17": "green"
-        }
-      }
-    },
-    {
-      name: "IKT International",
-      status: "In Progress",
-      progress: 90,
-      tasks: [
-        { task: "Autogate API Gateway", pic: "Rizky/Deja", progress: 100 },
-        { task: "Dashboard API", pic: "Rizky", progress: 100 },
-        { task: "Dashboard Web", pic: "Iqbal", progress: 70 }
-      ],
-      timeline: {
-        schedule: {
-          "2025-02-08": "yellow",
-          "2025-02-16": "yellow",
-          "2025-02-17": "green"
-        }
-      }
-    },
-    {
-      name: "Kemenag SIPPRO",
-      status: "In Progress",
-      progress: 63.3,
-      tasks: [
-        { task: "Validator : Validator Portal for validate", pic: "Rizky/Iqbal", progress: 80 },
-        { task: "Biro hukum : Portal for biro hukum", pic: "Rizky/Iqbal", progress: 70 },
-        { task: "Lembaga Baru Integration", pic: "Rizky/Iqbal/David", progress: 40 }
-      ],
-      timeline: {
-        schedule: {
-          "2025-02-08": "yellow",
-          "2025-02-16": "yellow",
-          "2025-02-17": "green"
-        }
-      }
+      },
+      challenges: ["Mockup service need to be created, since no OPUS Dev"]
     },
     {
       name: "Kalibaru CA Autogate",
@@ -94,8 +50,8 @@ export const projects = {
       timeline: {
         schedule: {
           "2025-02-09": "yellow",
-          "2025-02-15": "yellow",
-          "2025-02-17": "green",
+          "2025-02-14": "yellow",
+          "2025-02-15": "red",
           "2025-02-18": "yellow",
           "2025-02-22": "yellow"
         }
@@ -111,10 +67,109 @@ export const projects = {
       ],
       timeline: {
         schedule: {
-          "2025-02-15": "yellow",
-          "2025-02-17": "green"
+          "2025-02-15": "red",
+          "2025-02-16": "red"
         }
       }
+    },
+    {
+      name: "Palembang Autogate",
+      status: "Planned",
+      progress: 0,
+      tasks: [
+        { task: "Kolom Full/Empty di container", pic: "Deja", progress: 0 },
+        { task: "Add user CM", pic: "Deja/David", progress: 0 }
+      ],
+      timeline: {
+        schedule: {
+          "2025-02-13": "yellow",
+          "2025-02-14": "green"
+        }
+      },
+      challenges: ["Resources"]
+    },
+    {
+      name: "Pontianak Autogate",
+      status: "In Progress",
+      progress: 83.3,
+      tasks: [
+        { task: "Autogate New UAT", pic: "David/Deja", progress: 100 },
+        { task: "Flow Autohold/P2 Check", pic: "Deja", progress: 100 },
+        { task: "Video Tutorial AMS", pic: "David", progress: 50 }
+      ],
+      timeline: {
+        schedule: {
+          "2025-02-08": "yellow",
+          "2025-02-14": "green"
+        }
+      },
+      challenges: ["More testing on hold/p2 SOP"]
+    },
+    {
+      name: "Kemenag SIPPRO",
+      status: "In Progress",
+      progress: 63.3,
+      tasks: [
+        { task: "Validator : Validator Portal for validate", pic: "Rizky/Iqbal", progress: 80 },
+        { task: "Biro hukum : Portal for biro hukum", pic: "Rizky/Iqbal", progress: 70 },
+        { task: "Lembaga Baru Integration", pic: "Rizky/Iqbal/David", progress: 40 }
+      ],
+      timeline: {
+        schedule: {
+          "2025-02-15": "red",
+          "2025-02-17": "green"
+        }
+      },
+      challenges: ["Lembaga Integration API Needed"]
+    },
+    {
+      name: "IKT International",
+      status: "In Progress",
+      progress: 96.7,
+      tasks: [
+        { task: "Autogate API Gateway", pic: "Rizky/Deja", progress: 100 },
+        { task: "Dashboard API", pic: "Rizky", progress: 100 },
+        { task: "Dashboard Web", pic: "Iqbal", progress: 90 }
+      ],
+      timeline: {
+        schedule: {
+          "2025-02-15": "red",
+          "2025-02-17": "green"
+        }
+      },
+      challenges: ["More features added"]
+    },
+    {
+      name: "TO3 : Xray",
+      status: "In Progress",
+      progress: 43.3,
+      tasks: [
+        { task: "API Integration", pic: "Rizky", progress: 50 },
+        { task: "API Test", pic: "David", progress: 50 },
+        { task: "AMS Web : Xray Implementation", pic: "Rizky/Iqbal/David", progress: 30 }
+      ],
+      timeline: {
+        schedule: {
+          "2025-02-09": "yellow",
+          "2025-02-14": "green",
+          "2025-02-15": "red",
+          "2025-02-17": "green"
+        }
+      },
+      challenges: ["Resources","Tight schedule"]
+    }
+  ],
+
+  monthlyPlan: [
+    {
+      title: "February 2025 Targets",
+      description: "Complete ongoing implementations and system integrations",
+      items: [
+        "Complete TSJ Autogate UAT",
+        "Implement Kalibaru CA Autogate enhancements",
+        "Launch Kemenag SIPPRO portal updates",
+        "Complete TO3 Xray integration"
+      ]
     }
   ],
   weeklyPlan: [
