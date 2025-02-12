@@ -53,7 +53,7 @@ const ProjectStatusAndChallenges = ({ content }) => {
 
 
     const getDates = () => {
-        const startDate = new Date('2025-02-08');
+        const startDate = new Date('2025-02-11');
         const endDate = new Date('2025-02-23');
         const dates = [];
         let currentDate = new Date(startDate);
@@ -130,23 +130,21 @@ const ProjectStatusAndChallenges = ({ content }) => {
     }, []);
 
     const getCellBackground = (date, project) => {
-        const dayOfWeek = date.getDay();
-        const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-
-        if (isWeekend) {
-            return 'bg-red-50';
+        const dateStr = date.toISOString().split('T')[0];
+        const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+        
+        if (isWeekend) return 'bg-red-50';
+        
+        if (project.timeline?.schedule) {
+            const status = project.timeline.schedule[dateStr];
+            if (status === 'green') return 'bg-green-100';
+            if (status === 'yellow') return 'bg-yellow-100';
+            if (status === 'red') return 'bg-red-50';
         }
-
-        if (isInTimeline(date, project, 'target')) {
-            return 'bg-green-100';
-        }
-
-        if (isInTimeline(date, project, 'duration')) {
-            return 'bg-yellow-100';
-        }
-
+        
         return '';
     };
+
 
     return (
         <div className="p-8 bg-slate-50 min-h-screen">
@@ -214,35 +212,36 @@ const ProjectStatusAndChallenges = ({ content }) => {
                         </div>
                     )}
 
-                    {/* Google Sheet View */}
+                    {/* Sheet View */}
                     {activeView === 'sheet' && (
-                        <div className="overflow-x-auto table-container shadow-sm border border-slate-200 rounded-lg" style={{ maxHeight: '75vh' }}>
+                        <div className="overflow-x-auto border border-slate-200 rounded-lg">
                             <table className="min-w-full divide-y divide-slate-200">
-                                <thead className="bg-slate-50">
-                                    <tr>
-                                        <th ref={headerRowRef} className="w-60 px-4 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider sticky top-0 left-0 z-30 bg-slate-50 border-r border-slate-200">
+                                <thead>
+                                    <tr className="bg-slate-50">
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-48">
                                             Project
                                         </th>
-                                        <th ref={headerRowRef} className="w-32 px-4 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider sticky top-0 left-60 z-30 bg-slate-50 border-r border-slate-200">
+                                        <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-32">
                                             PIC
                                         </th>
-                                        <th ref={headerRowRef} className="w-40 px-4 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider sticky top-0 left-92 z-30 bg-slate-50 border-r border-slate-200">
+                                        <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-64">
                                             Tasks
                                         </th>
-                                        <th ref={headerRowRef} className="w-24 px-4 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider sticky top-0 left-132 z-30 bg-slate-50 border-r border-slate-200">
+                                        <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-32">
                                             Progress
                                         </th>
-                                        {dates.map((date, index) => (
+                                        {getDates().map((date, index) => (
                                             <th
                                                 key={index}
-                                                className={`w-[60px] px-2 py-3 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider border-r border-gray-200 ${date.getDay() === 0 || date.getDay() === 6 ? 'bg-red-50' : ''
-                                                    }`}
+                                                className={`w-16 px-2 py-2 text-center border-l ${
+                                                    date.getDay() === 0 || date.getDay() === 6 ? 'bg-red-50' : ''
+                                                }`}
                                             >
                                                 <div className="flex flex-col">
-                                                    <span className="text-[10px] text-gray-400">
-                                                        {date.toLocaleDateString('en-US', { weekday: 'short' })}
+                                                    <span className="text-xs text-slate-400">
+                                                        {date.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase()}
                                                     </span>
-                                                    <span className="text-sm font-medium text-gray-700">
+                                                    <span className="text-sm font-medium text-slate-600">
                                                         {date.getDate()}
                                                     </span>
                                                 </div>
@@ -250,46 +249,46 @@ const ProjectStatusAndChallenges = ({ content }) => {
                                         ))}
                                     </tr>
                                 </thead>
-
                                 <tbody className="bg-white divide-y divide-slate-200">
                                     {filteredProjects.map((project, index) =>
                                         project.tasks?.map((task, taskIndex) => (
-                                            <tr
-                                                key={`${index}-${taskIndex}`}
-                                                className="hover:bg-gray-50 transition-colors"
-                                            >
-                                                <td ref={firstColumnRef} className="sticky left-0 z-20 bg-white border-r border-gray-200 px-4 py-3 text-sm text-gray-900 font-medium">
+                                            <tr key={`${index}-${taskIndex}`} className="hover:bg-slate-50">
+                                                <td className="px-6 py-3 whitespace-nowrap text-sm font-medium text-slate-900">
                                                     {taskIndex === 0 ? project.name : ''}
                                                 </td>
-                                                <td ref={picColumnRef} className="sticky left-[240px] z-20 bg-white border-r border-gray-200 px-4 py-3 text-sm">
-                                                    <div className="flex gap-1">
-                                                        {task.pic?.split('/').map((pic, i) => (
-                                                            <span
-                                                                key={i}
-                                                                className="px-2 py-1 bg-blue-100 rounded-full text-xs font-medium text-blue-800"
-                                                            >
-                                                                {pic.trim()}
-                                                            </span>
-                                                        ))}
-                                                    </div>
+                                                <td className="px-4 py-3 whitespace-nowrap">
+                                                    {task.pic?.split('/').map((pic, i) => (
+                                                        <span
+                                                            key={i}
+                                                            className="inline-block px-2 py-1 text-xs font-medium text-blue-700 bg-blue-50 rounded-full mr-1"
+                                                        >
+                                                            {pic}
+                                                        </span>
+                                                    ))}
                                                 </td>
-                                                <td ref={tasksColumnRef} className="sticky left-[360px] z-20 bg-white border-r border-gray-200 px-4 py-3 text-sm">
+                                                <td className="px-4 py-3 text-sm text-slate-500">
                                                     {task.task}
                                                 </td>
-                                                <td ref={progressColumnRef} className="sticky left-[480px] z-20 bg-white border-r border-gray-200 px-4 py-3 text-sm text-center">
-                                                    <span className={`px-2 py-1 rounded-full text-xs ${task.progress === 100
-                                                        ? 'bg-green-100 text-green-800'
-                                                        : task.progress === 0
-                                                            ? 'bg-red-100 text-red-800'
-                                                            : 'bg-yellow-100 text-yellow-800'
-                                                        }`}>
+                                                <td className="px-4 py-3 whitespace-nowrap">
+                                                    <span
+                                                        className={`px-2 py-1 text-xs font-medium rounded-full ${
+                                                            task.progress === 100
+                                                                ? 'bg-green-100 text-green-800'
+                                                                : task.progress === 0
+                                                                ? 'bg-red-100 text-red-800'
+                                                                : 'bg-yellow-100 text-yellow-800'
+                                                        }`}
+                                                    >
                                                         {task.progress}%
                                                     </span>
                                                 </td>
-                                                {dates.map((date, dateIndex) => (
+                                                {getDates().map((date, dateIndex) => (
                                                     <td
                                                         key={dateIndex}
-                                                        className={`px-2 py-3 border-r border-gray-100 ${getCellBackground(date, project)}`}
+                                                        className={`px-2 py-3 text-center border-l ${getCellBackground(
+                                                            date,
+                                                            project
+                                                        )}`}
                                                     />
                                                 ))}
                                             </tr>
@@ -299,6 +298,7 @@ const ProjectStatusAndChallenges = ({ content }) => {
                             </table>
                         </div>
                     )}
+
 
                     {/* Status & Challenges View */}
                     {activeView !== 'sheet' && (
