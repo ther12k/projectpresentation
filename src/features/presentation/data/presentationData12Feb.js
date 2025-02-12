@@ -1,6 +1,29 @@
 export const projects = {
   projectStatus: [
     {
+      name: 'JICT OCR',
+      status: 'On Track',
+      progress: 80,
+      tasks: [
+        { task: 'Update validation min max size on dashboard', pic: 'Rizky', progress: 100 },
+        { task: 'Upload/View image using webserver', pic: 'Isra', progress: 100 },
+        { task: 'Remediasi JAGS Server', pic: 'Isra', progress: 100 },
+        { task: 'Update CP for payment slip', pic: 'Rizky', progress: 100 },
+        { task: 'New virtual dir for gateapi', pic: 'Isra', progress: 0 }
+      ],
+      timeline: {
+        start: '2025-01-15',
+        end: '2025-01-17',
+        schedule: {
+          '2025-01-15': 'yellow',
+          '2025-01-16': 'green',
+          '2025-01-17': 'green',
+          '2025-02-14': 'green'
+        }
+      },
+      challenges: []
+    },
+    {
       name: "KOJA OCR",
       status: "In Progress",
       progress: 100,
@@ -77,8 +100,8 @@ export const projects = {
       status: "Planned",
       progress: 0,
       tasks: [
-        { task: "Kolom Full/Empty di container", pic: "Deja", progress: 0 },
-        { task: "Add user CM", pic: "Deja/David", progress: 0 }
+        { task: "Full/Empty Column at Container table", pic: "Deja", progress: 0 },
+        { task: "Add CM User", pic: "Deja/David", progress: 0 }
       ],
       timeline: {
         schedule: {
@@ -95,7 +118,7 @@ export const projects = {
       tasks: [
         { task: "Autogate New UAT", pic: "David/Deja", progress: 100 },
         { task: "Flow Autohold/P2 Check", pic: "Deja", progress: 100 },
-        { task: "Video Tutorial AMS", pic: "David", progress: 50 }
+        { task: "AMS Video Tutorial", pic: "David", progress: 50 }
       ],
       timeline: {
         schedule: {
@@ -120,7 +143,7 @@ export const projects = {
           "2025-02-17": "green"
         }
       },
-      challenges: ["Lembaga Integration API Needed"]
+      challenges: ["Resources","Lembaga Integration API Needed"]
     },
     {
       name: "IKT International",
@@ -166,6 +189,7 @@ export const projects = {
       description: "Complete ongoing implementations and system integrations",
       items: [
         "Complete TSJ Autogate UAT",
+        "Complete Kalibaru CA Payment/Monitoring System",
         "Implement Kalibaru CA Autogate enhancements",
         "Launch Kemenag SIPPRO portal updates",
         "Complete TO3 Xray integration"
@@ -178,7 +202,7 @@ export const projects = {
       status: "In Progress",
       tasks: [
         "TSJ Autogate UAT execution",
-        "Kalibaru CA payment service implementation",
+        "Complete Kalibaru CA payment service implementation",
         "Kemenag SIPPRO integration testing",
         "TO3 Xray system implementation"
       ]
