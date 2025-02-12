@@ -149,7 +149,7 @@ const ProjectStatusAndChallenges = ({ content }) => {
     };
 
     return (
-        <div className="p-6 bg-slate-50 min-h-screen">
+        <div className="p-8 bg-slate-50 min-h-screen">
             <div className="max-w-7xl mx-auto bg-white rounded-xl shadow-md">
                 <div className="p-6 space-y-6">
                     {/* Header Section */}
