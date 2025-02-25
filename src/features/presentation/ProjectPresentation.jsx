@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { projects } from './data/presentationData12Feb';
+import { projects } from './data/presentationData25Feb';
 import PresentationControls from './components/PresentationControls';
 import {
   TitleSlide,
@@ -20,7 +20,7 @@ const ProjectPresentation = () => {
       type: 'title',
       content: {
         title: 'Project Status Updates',
-        date: '12 February 2025'
+        date: '25 February 2025'
       }
     },
     {
