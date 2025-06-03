@@ -1,0 +1,287 @@
+export const projects = {
+  projectStatus : [
+    {
+      name: 'JICT OCR',
+      status: 'In Progress',
+      progress: 67.5,
+      tasks: [
+        { task: 'Validation min max size on dashboard', pic: 'Rizky', progress: 100 },
+        { task: 'New Message OCR', pic: 'Rizky/Isra', progress: 80 },
+        { task: 'OV message check', pic: 'Rizky', progress: 50 },
+        { task: 'Integrity db constraint error', pic: 'Rizky/Isra', progress: 40 },
+        { task: 'OCR Dashboard Update', pic: 'Iqbal', progress: 50 }
+      ],
+      timeline: {
+        start: '2025-05-07',
+        start: '2025-05-10',
+        schedule: {
+          '2025-05-07': 'yellow',
+          '2025-05-08': 'yellow',
+          '2025-05-09': 'green',
+          '2025-05-10': 'red'
+        }
+      },
+      challenges: ["Sp codes and Eq codes required","Use existing FlexiTank element (sp code | eq code | damagecode, ex : A;B | RD | D1;D2) or create new element"]
+    },
+    {
+      name: 'KOJA OCR',
+      status: 'In Progress',
+      progress: 60,
+      tasks: [
+        { task: 'OCR UAT', pic: 'Isra', progress: 100 },
+        { task: 'New Message OCR', pic: 'Rizky/Isra', progress: 80 },
+        { task: 'Check Xray di OUT/Import', pic: 'Rizky', progress: 0 }
+      ],
+      timeline: {
+        schedule: {
+          '2025-05-07': 'yellow',
+          '2025-05-08': 'green',
+          '2025-05-09': 'green',
+          '2025-05-10': 'red'
+        }
+      }
+    },
+    {
+      name: "TSJ Autogate",
+      status: "In Progress",
+      progress: 50,
+      tasks: [
+        { task: "Autogate", pic: "Deja", progress: 100 },
+        { task: "UAT", pic: "Deja/David", progress: 0 }
+      ],
+      timeline: {
+        schedule: {
+          '2025-05-07': 'red',
+          '2025-05-08': 'red',
+          '2025-05-09': 'red',
+          '2025-05-10': 'red'
+        }
+      },
+      challenges: ["Jadwal UAT masih menunggu"]
+    },
+    {
+      name: "Kalibaru CA Autogate",
+      status: "In Progress",
+      progress: 77.2,
+      tasks: [
+        { task: "Mobile Web App (Autogate)", pic: "Rizky/Iqbal", progress: 10 },
+        { task: "Payment/Emoney", pic: "Rizky", progress: 100 },
+        { task: "Settlement (Automatic)", pic: "Rizky", progress: 100 },
+        { task: "Monitoring Transaction", pic: "Rizky", progress: 90 },
+        { task: "Service for payment in 1hrs", pic: "Rizky", progress: 80 },
+        { task: "Service/cp for enhance truckin process", pic: "Rizky", progress: 100 },
+        { task: "Self Pregate System : Mockup", pic: "Rizky", progress: 70 },
+        { task: "Bug Payment", pic: "Rizky", progress: 95 },
+        { task: "AMS IN on terminal", pic: "Rizky", progress: 50 }
+      ],
+      timeline: {
+        start: '2025-05-07',
+        start: '2025-05-10',
+        schedule: {
+          '2025-05-07': 'red',
+          '2025-05-08': 'red',
+          '2025-05-09': 'red',
+          '2025-05-10': 'red'
+        }
+      },
+      challenges: ["Menunggu tarikan raw data reader dari STI"]
+    },
+    {
+      name: "Indocement Autogate",
+      status: "Completed",
+      progress: 100,
+      tasks: [
+        { task: "Autogate New UAT", pic: "Rizky/David", progress: 100 },
+        { task: "Autogate New : Bug fix rfid double", pic: "Rizky", progress: 100 },
+        { task: "Autogate New : Bug fix retry Transaction", pic: "Rizky", progress: 100 }
+      ],
+      timeline: {
+        start: '2025-05-07',
+        start: '2025-05-10',
+        schedule: {
+          '2025-05-07': 'red',
+          '2025-05-08': 'red',
+          '2025-05-09': 'red',
+          '2025-05-10': 'red'
+        }
+      }
+    },
+    {
+      name: "Palembang Autogate",
+      status: "Completed",
+      progress: 100,
+      tasks: [
+        { task: "Kolom Full/Empty di container", pic: "Deja", progress: 100 },
+        { task: "Add user CM", pic: "Deja/David", progress: 100 }
+      ],
+      timeline: {
+        start: '2025-05-07',
+        start: '2025-05-10',
+        schedule: {
+          '2025-05-07': 'red',
+          '2025-05-08': 'red',
+          '2025-05-09': 'red',
+          '2025-05-10': 'red'
+        }
+      }
+    },
+    {
+      name: "Pontianak Autogate",
+      status: "Completed",
+      progress: 100,
+      tasks: [
+        { task: "Autogate New UAT", pic: "David/Deja", progress: 100 },
+        { task: "Flow Autohold/P2 Check", pic: "Deja", progress: 100 },
+        { task: "Video Tutorial AMS", pic: "David", progress: 100 }
+      ],
+      timeline: {
+        start: '2025-05-07',
+        start: '2025-05-10',
+        schedule: {
+          '2025-05-07': 'red',
+          '2025-05-08': 'red',
+          '2025-05-09': 'red',
+          '2025-05-10': 'red'
+        }
+      }
+    },
+    {
+      name: "Kemenag SIPPRO",
+      status: "In Progress",
+      progress: 70,
+      tasks: [
+        { task: "Validator : Portal for validate", pic: "Rizky/Iqbal", progress: 80 },
+        { task: "Biro hukum : Portal for biro hukum", pic: "Rizky/Iqbal", progress: 70 },
+        { task: "Lembaga Baru Integration", pic: "Rizky/Iqbal/David", progress: 40 },
+        { task: "Migrasi Server", pic: "Rizky/David", progress: 90 }
+      ],
+      timeline: {
+        start: '2025-05-07',
+        start: '2025-05-10',
+        schedule: {
+          '2025-05-07': 'yellow',
+          '2025-05-08': 'red',
+          '2025-05-09': 'red',
+          '2025-05-10': 'red'
+        }
+      }
+    },
+    {
+      name: "IKT International",
+      status: "In Progress",
+      progress: 100,
+      tasks: [
+        { task: "Autogate API Gateway", pic: "Rizky/Deja", progress: 100 },
+        { task: "Dashboard API", pic: "Rizky", progress: 100 },
+        { task: "Dashboard Web", pic: "Iqbal", progress: 100 }
+      ],
+      timeline: {
+        start: '2025-05-07',
+        start: '2025-05-10',
+        schedule: {
+          '2025-05-07': 'red',
+          '2025-05-08': 'red',
+          '2025-05-09': 'red',
+          '2025-05-10': 'red'
+        }
+      }
+    },
+    {
+      name: "IKT Domestic",
+      status: "Completed",
+      progress: 100,
+      tasks: [
+        { task: "CMS Add", pic: "Deja", progress: 100 }
+      ],
+      timeline: {
+        start: '2025-05-07',
+        start: '2025-05-10',
+        schedule: {
+          '2025-05-07': 'red',
+          '2025-05-08': 'red',
+          '2025-05-09': 'red',
+          '2025-05-10': 'red'
+        }
+      }
+    },
+    {
+      name: "TO3 : Xray",
+      status: "Completed",
+      progress: 100,
+      tasks: [
+        { task: "API Integration", pic: "Rizky", progress: 100 },
+        { task: "API Test", pic: "David", progress: 100 },
+        { task: "AMS Web : Xray Implementation", pic: "Rizky/Iqbal/Deja", progress: 100 },
+        { task: "Check Xray in Gateway", pic: "Deja", progress: 100 }
+      ],
+      timeline: {
+        start: '2025-05-07',
+        start: '2025-05-10',
+        schedule: {
+          '2025-05-07': 'red',
+          '2025-05-08': 'red',
+          '2025-05-09': 'red',
+          '2025-05-10': 'red'
+        }
+      }
+    },
+    {
+      name: "TO3/MAL Joingate",
+      status: "In Progress",
+      progress: 83.3,
+      tasks: [
+        { task: "API", pic: "Deja", progress: 90 },
+        { task: "CP Gate IN", pic: "Deja", progress: 90 },
+        { task: "MAL CP Gate IN/Reader", pic: "Deja", progress: 70 }
+      ],
+      timeline: {
+        start: '2025-05-07',
+        start: '2025-05-10',
+        schedule: {
+          '2025-05-07': 'red',
+          '2025-05-08': 'red',
+          '2025-05-09': 'red',
+          '2025-05-10': 'red'
+        }
+      },
+      challenges: ["Administrasi Kelanjutan project"]
+    }
+  ],
+  monthlyPlan : [
+    {
+      title: "May 2025 Targets",
+      description: "Complete ongoing implementations and prepare for new projects",
+      items: [
+        "Complete JICT OCR implementation and fix constraint errors",
+        "Complete KOJA OCR implementation and Xray integration",
+        "Schedule and complete TSJ Autogate UAT",
+        "Finalize Kalibaru CA Autogate mobile web app",
+        "Complete Kemenag SIPPRO server migration and integration"
+      ]
+    }
+  ],
+  weeklyPlan : [
+    {
+      week: "Week 1 (May 1-7)",
+      status: "In Progress",
+      tasks: [
+        "JICT OCR integrity database fixes",
+        "KOJA OCR message system optimization",
+        "Kalibaru CA AMS IN terminal implementation",
+        "TO3/MAL Joingate final testing",
+        "Kemenag SIPPRO server migration completion"
+      ]
+    },
+    {
+      week: "Week 2 (May 8-14)",
+      status: "Planned",
+      tasks: [
+        "TSJ Autogate UAT scheduling and preparation",
+        "JICT OCR OV message checks and testing",
+        "KOJA OCR Xray integration planning",
+        "Kalibaru CA Mobile Web App development",
+        "Documentation updates for completed projects"
+      ]
+    }
+  ]
+};

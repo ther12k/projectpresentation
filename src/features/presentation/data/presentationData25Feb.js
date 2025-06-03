@@ -3,22 +3,26 @@ export const projects = {
     {
       name: 'JICT OCR',
       status: 'On Track',
-      progress: 80,
+      progress: 91.7,
       tasks: [
-        { task: 'Update validation min max size on dashboard', pic: 'Rizky', progress: 100 },
-        { task: 'Upload/View image using webserver', pic: 'Isra', progress: 100 },
+        { task: 'Validation min max size on dashboard', pic: 'Rizky', progress: 100 },
+        { task: 'View image using webserver', pic: 'Isra', progress: 100 },
         { task: 'Remediasi JAGS Server', pic: 'Isra', progress: 100 },
         { task: 'Update CP for payment slip', pic: 'Rizky', progress: 100 },
-        { task: 'New virtual dir for gateapi', pic: 'Isra', progress: 0 }
+        { task: 'Port untuk gate api', pic: 'Isra', progress: 100 },
+        { task: 'New Message OCR', pic: 'Rizky/Isra', progress: 50 }
       ],
       timeline: {
-        start: '2025-01-15',
-        end: '2025-01-17',
+        start: '2025-04-15',
+        end: '2025-04-28',
         schedule: {
-          '2025-01-15': 'yellow',
-          '2025-01-16': 'green',
-          '2025-01-17': 'green',
-          '2025-02-14': 'green'
+          "2025-04-17": "yellow",
+          "2025-04-18": "yellow",
+          "2025-04-19": "yellow",
+          "2025-04-20": "yellow",
+          "2025-04-26": "red",
+          "2025-04-27": "red",
+          "2025-04-28": "green"
         }
       },
       challenges: []
