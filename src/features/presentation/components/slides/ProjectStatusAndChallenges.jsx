@@ -53,8 +53,11 @@ const ProjectStatusAndChallenges = ({ content }) => {
 
 
     const getDates = () => {
-        const startDate = new Date('2025-02-21');
-        const endDate = new Date('2025-03-08');
+        const startDate = new Date('2025-06-03');
+        const endDate = new Date('2025-06-30');
+        startDate.setHours(0, 0, 0, 0);
+        endDate.setHours(23, 59, 59, 999);
+        if (startDate > endDate) return [];
         const dates = [];
         let currentDate = new Date(startDate);
 

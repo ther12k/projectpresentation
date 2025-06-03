@@ -1,15 +1,15 @@
-import React, { useState, useRef } from 'react';
-import { projects } from './data/presentationData25Feb';
-import PresentationControls from './components/PresentationControls';
+import React, { useState, useRef } from "react";
+import { projects } from "./data/presentationData3Jun";
+import PresentationControls from "./components/PresentationControls";
 import {
   TitleSlide,
   ProjectStatusSlide,
   ChallengesSlide,
   MonthlyPlanSlide,
-  WeeklyPlanSlide
-} from './components/slides';
-import { Card, CardContent } from '../../components/ui/card';
-import ProjectStatusAndChallenges from './components/slides/ProjectStatusAndChallenges';
+  WeeklyPlanSlide,
+} from "./components/slides";
+import { Card, CardContent } from "../../components/ui/card";
+import ProjectStatusAndChallenges from "./components/slides/ProjectStatusAndChallenges";
 
 const ProjectPresentation = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -17,17 +17,17 @@ const ProjectPresentation = () => {
 
   const slides = [
     {
-      type: 'title',
+      type: "title",
       content: {
-        title: 'Project Status Updates',
-        date: '25 February 2025'
-      }
+        title: "Project Status Updates",
+        date: "3 June 2025",
+      },
     },
     {
-      type: 'projectStatus',
+      type: "projectStatus",
       content: {
-        projects: projects.projectStatus
-      }
+        projects: projects.projectStatus,
+      },
     },
     // {
     //   type: 'challenges',
@@ -36,35 +36,35 @@ const ProjectPresentation = () => {
     //   }
     // },
     {
-      type: 'monthlyPlan',
+      type: "monthlyPlan",
       content: {
-        items: projects.monthlyPlan
-      }
+        items: projects.monthlyPlan,
+      },
     },
     {
-      type: 'weeklyPlan',
+      type: "weeklyPlan",
       content: {
-        plans: projects.weeklyPlan
-      }
-    }
+        plans: projects.weeklyPlan,
+      },
+    },
   ];
 
   const handleSlideChange = (newSlide) => {
     setCurrentSlide(newSlide);
     if (slideRef.current) {
-      slideRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+      slideRef.current.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
   const renderSlide = (slide) => {
     switch (slide.type) {
-      case 'title':
+      case "title":
         return <TitleSlide content={slide.content} />;
-      case 'projectStatus':
+      case "projectStatus":
         return <ProjectStatusAndChallenges content={slide.content} />;
-      case 'monthlyPlan':
+      case "monthlyPlan":
         return <MonthlyPlanSlide content={slide.content} />;
-      case 'weeklyPlan':
+      case "weeklyPlan":
         return <WeeklyPlanSlide content={slide.content} />;
       default:
         return null;
@@ -83,12 +83,12 @@ const ProjectPresentation = () => {
         {/* Main Content */}
         <Card className="flex-1 relative rounded-xl shadow-lg overflow-hidden bg-white border-0">
           {/* Slide Content with Custom Scrollbar */}
-          <div 
+          <div
             ref={slideRef}
             className="absolute inset-0 overflow-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-400"
             style={{
-              scrollbarWidth: 'thin',
-              msOverflowStyle: 'none'
+              scrollbarWidth: "thin",
+              msOverflowStyle: "none",
             }}
           >
             <div className="min-h-full p-6">
@@ -103,7 +103,9 @@ const ProjectPresentation = () => {
             currentSlide={currentSlide}
             totalSlides={slides.length}
             onPrevious={() => handleSlideChange(Math.max(0, currentSlide - 1))}
-            onNext={() => handleSlideChange(Math.min(slides.length - 1, currentSlide + 1))}
+            onNext={() =>
+              handleSlideChange(Math.min(slides.length - 1, currentSlide + 1))
+            }
           />
         </div>
       </div>
