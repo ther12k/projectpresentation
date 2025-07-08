@@ -1,14 +1,14 @@
 import React, { useState, useRef } from "react";
-import { projects } from "./data/presentationData3Jun";
+import { projects } from "./data/presentationData08jul";
+import { supabaseSlideData } from "./data/supabaseSlideData";
 import PresentationControls from "./components/PresentationControls";
 import {
   TitleSlide,
-  ProjectStatusSlide,
-  ChallengesSlide,
   MonthlyPlanSlide,
   WeeklyPlanSlide,
+  SupabaseSlide,
 } from "./components/slides";
-import { Card, CardContent } from "../../components/ui/card";
+import { Card } from "../../components/ui/card";
 import ProjectStatusAndChallenges from "./components/slides/ProjectStatusAndChallenges";
 
 const ProjectPresentation = () => {
@@ -16,36 +16,43 @@ const ProjectPresentation = () => {
   const slideRef = useRef(null);
 
   const slides = [
+    // Title Slide
     {
       type: "title",
       content: {
         title: "Project Status Updates",
-        date: "3 June 2025",
+        date: "8 July 2025",
       },
     },
+
+    // Project Status Slide
     {
       type: "projectStatus",
       content: {
         projects: projects.projectStatus,
       },
     },
-    // {
-    //   type: 'challenges',
-    //   content: {
-    //     projects: projects.projectStatus
-    //   }
-    // },
+
+    // Monthly Plan Slide
     {
       type: "monthlyPlan",
       content: {
         items: projects.monthlyPlan,
       },
     },
+
+    // Weekly Plan Slide
     {
       type: "weeklyPlan",
       content: {
         plans: projects.weeklyPlan,
       },
+    },
+    
+    // Supabase Architecture Slide
+    {
+      type: "supabase",
+      content: supabaseSlideData,
     },
   ];
 
@@ -66,6 +73,8 @@ const ProjectPresentation = () => {
         return <MonthlyPlanSlide content={slide.content} />;
       case "weeklyPlan":
         return <WeeklyPlanSlide content={slide.content} />;
+      case "supabase":
+        return <SupabaseSlide content={slide.content} />;
       default:
         return null;
     }
@@ -111,7 +120,7 @@ const ProjectPresentation = () => {
       </div>
 
       {/* Custom CSS for Webkit Scrollbar */}
-      <style jsx global>{`
+      <style>{`
         /* Webkit scrollbar styles */
         ::-webkit-scrollbar {
           width: 8px;
