@@ -3,4 +3,6 @@ export { default as ProjectStatusSlide } from './ProjectStatusSlide';
 export { default as ChallengesSlide } from './ChallengesSlide';
 export { default as MonthlyPlanSlide } from './MonthlyPlanSlide';
 export { default as WeeklyPlanSlide } from './WeeklyPlanSlide';
+export { default as RepoMigrationUpdateSlide } from './RepoMigrationUpdateSlide';
 export { default as SupabaseSlide } from './SupabaseSlide';
+export { default as DowntimeRundownSlide } from './DowntimeRundownSlide';

@@ -1,11 +1,7 @@
-import ProjectPresentation from './features/presentation/ProjectPresentation'
+import Presentation from './components/Presentation'
 
 function App() {
-  return (
-    <div className="min-h-screen">
-      <ProjectPresentation />
-    </div>
-  )
+  return <Presentation />
 }
 
 export default App
