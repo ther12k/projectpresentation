@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { projects } from "./data/presentationData08jul";
+import { projects } from "./data/presentationData06oct";
 import { supabaseSlideData } from "./data/supabaseSlideData";
 import PresentationControls from "./components/PresentationControls";
 import {
@@ -7,10 +7,11 @@ import {
   MonthlyPlanSlide,
   WeeklyPlanSlide,
   SupabaseSlide,
+  DowntimeRundownSlide
 } from "./components/slides";
 import { Card } from "../../components/ui/card";
 import ProjectStatusAndChallenges from "./components/slides/ProjectStatusAndChallenges";
-
+import { dbChangeData } from "./data/presentationDataDbChange";
 const ProjectPresentation = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef(null);
@@ -21,7 +22,7 @@ const ProjectPresentation = () => {
       type: "title",
       content: {
         title: "Project Status Updates",
-        date: "8 July 2025",
+        date: "06 Oktober 2025",
       },
     },
 
@@ -48,7 +49,10 @@ const ProjectPresentation = () => {
         plans: projects.weeklyPlan,
       },
     },
-    
+    {
+      type: "downtimeRundown",
+      content: dbChangeData,
+    },
     // Supabase Architecture Slide
     {
       type: "supabase",
@@ -75,6 +79,8 @@ const ProjectPresentation = () => {
         return <WeeklyPlanSlide content={slide.content} />;
       case "supabase":
         return <SupabaseSlide content={slide.content} />;
+      case "downtimeRundown":
+        return <DowntimeRundownSlide content={slide.content} />;
       default:
         return null;
     }
