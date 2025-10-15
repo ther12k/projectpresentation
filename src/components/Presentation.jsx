@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Slide from './Slide'
 import Controls from './Controls'
 import ParticleBackground from './particles/ParticleBackground'
@@ -7,15 +7,11 @@ import { slides } from '../data/slides'
 export default function Presentation() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const totalSlides = slides.length
-  const slideMetadata = useMemo(
-    () =>
-      slides.map((slide, index) => ({
-        index,
-        title: slide.navTitle ?? slide.header?.title ?? `Slide ${index + 1}`,
-        subtitle: slide.header?.subtitle ?? null
-      })),
-    [totalSlides]
-  )
+  const slideMetadata = slides.map((slide, index) => ({
+    index,
+    title: slide.navTitle ?? slide.header?.title ?? `Slide ${index + 1}`,
+    subtitle: slide.header?.subtitle ?? null
+  }))
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => Math.min(prev + 1, totalSlides - 1))
