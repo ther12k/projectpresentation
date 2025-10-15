@@ -173,7 +173,7 @@ export const slides = [
       subtitle: 'Capabilities that anchor Halotec’s competitive edge'
     },
     render: () => (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4">
         <HighlightBox title="Proven autogate & industrial automation expertise" color="green">
           <p>
             Full-stack deployments at Indonesia&apos;s busiest ports (JICT, KOJA, IPC) demonstrate mastery across software, hardware integration, implementation, and lifecycle support for mission-critical operations.
@@ -225,7 +225,7 @@ export const slides = [
       subtitle: 'Constraints to manage during the transition'
     },
     render: () => (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4">
         <HighlightBox title="Narrowing market focus" color="orange">
           <p>
             Concentration on industrial autogate and heavy-industry automation limits diversification and ties growth to capital spending cycles in ports, logistics, and manufacturing.
@@ -277,7 +277,7 @@ export const slides = [
       subtitle: 'Growth vectors unlocked by the new focus'
     },
     render: () => (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4">
         <HighlightBox title="Productization & recurring revenue models" color="blue">
           <p>
             Modularizing autogate components—hardware kits, software modules, managed services—enables repeat sales, subscription revenue, and margin expansion across multiple sites.
@@ -331,7 +331,7 @@ export const slides = [
       subtitle: 'External pressures to monitor closely'
     },
     render: () => (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4">
         <HighlightBox title="Increasing competition in the niche" color="purple">
           <p>
             National automation efforts attract global integrators and well-capitalized local players who can compete on price, bundled offerings, or brand recognition.
