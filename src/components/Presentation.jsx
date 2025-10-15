@@ -1,16 +1,22 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import Slide from './Slide'
 import ParticleBackground from './particles/ParticleBackground'
-import { slides } from '../data/slides'
+import { getSlides, languages, defaultLanguage } from '../data/slides'
 
 export default function Presentation() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [language, setLanguage] = useState(defaultLanguage)
+  const slides = useMemo(() => getSlides(language), [language])
   const totalSlides = slides.length
-  const slideMetadata = slides.map((slide, index) => ({
-    index,
-    title: slide.navTitle ?? slide.header?.title ?? `Slide ${index + 1}`,
-    subtitle: slide.header?.subtitle ?? null
-  }))
+  const slideMetadata = useMemo(
+    () =>
+      slides.map((slide, index) => ({
+        index,
+        title: slide.navTitle ?? slide.header?.title ?? `Slide ${index + 1}`,
+        subtitle: slide.header?.subtitle ?? null
+      })),
+    [slides]
+  )
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => Math.min(prev + 1, totalSlides - 1))
@@ -69,7 +75,31 @@ export default function Presentation() {
       <div className="relative z-10 flex flex-col items-center w-full min-h-screen p-5 pb-16 gap-10">
         <div className="w-full max-w-4xl">
           <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center justify-end gap-2">
+              {languages.map((option) => {
+                const isActive = option.code === language
+                const baseClasses = 'px-3 py-1 rounded-full text-xs md:text-sm font-semibold transition-all border'
+                const activeClasses = 'bg-gradient-to-r from-blue-600 to-purple-600 text-white border-blue-500 shadow-lg'
+                const inactiveClasses = 'bg-slate-900/70 text-slate-300 border-slate-700 hover:bg-slate-800/80'
+
+                return (
+                  <button
+                    key={option.code}
+                    type="button"
+                    onClick={() => {
+                      if (option.code !== language) {
+                        setLanguage(option.code)
+                      }
+                    }}
+                    className={`${baseClasses} ${isActive ? activeClasses : inactiveClasses}`}
+                    aria-pressed={isActive}
+                  >
+                    {option.label}
+                  </button>
+                )
+              })}
+            </div>
+            <div className="flex flex-wrap items-center gap-4">
               <button
                 type="button"
                 onClick={prevSlide}
@@ -79,7 +109,7 @@ export default function Presentation() {
                 Previous
               </button>
 
-              <div className="flex-1">
+              <div className="flex-1 min-w-[240px]">
                 <div className="flex items-center justify-between text-xs uppercase tracking-widest text-slate-400 mb-2">
                   <span className="truncate text-blue-300/80">
                     {activeSlideMeta?.title}
