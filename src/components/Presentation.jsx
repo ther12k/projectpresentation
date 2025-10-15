@@ -36,20 +36,22 @@ export default function Presentation() {
   }, [currentSlide])
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-slate-950">
+    <div className="relative w-full min-h-screen overflow-hidden bg-slate-950">
       <ParticleBackground />
-      
-      <div className="relative z-10 flex items-center justify-center w-full h-full p-5">
-        <Slide data={slides[currentSlide]} isActive={true} />
-      </div>
 
-      <Controls
-        currentSlide={currentSlide}
-        totalSlides={totalSlides}
-        onNext={nextSlide}
-        onPrev={prevSlide}
-        onGoTo={goToSlide}
-      />
+      <div className="relative z-10 flex flex-col items-center w-full min-h-screen p-5 pb-16">
+        <div className="flex-1 flex items-center justify-center w-full">
+          <Slide data={slides[currentSlide]} isActive={true} />
+        </div>
+
+        <Controls
+          currentSlide={currentSlide}
+          totalSlides={totalSlides}
+          onNext={nextSlide}
+          onPrev={prevSlide}
+          onGoTo={goToSlide}
+        />
+      </div>
     </div>
   )
 }

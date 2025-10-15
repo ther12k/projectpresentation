@@ -2,7 +2,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 export default function Controls({ currentSlide, totalSlides, onNext, onPrev }) {
   return (
-    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-20">
+    <div className="relative z-20 mt-6 flex justify-center w-full">
       <div className="flex items-center gap-5 bg-slate-900/95 backdrop-blur-xl px-8 py-4 rounded-full border border-blue-500/30 shadow-2xl">
         <button
           onClick={onPrev}
