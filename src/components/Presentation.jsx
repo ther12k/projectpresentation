@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
 import Slide from './Slide'
-import Controls from './Controls'
 import ParticleBackground from './particles/ParticleBackground'
 import { slides } from '../data/slides'
 
@@ -67,59 +66,47 @@ export default function Presentation() {
     <div className="relative w-full min-h-screen overflow-hidden bg-slate-950">
       <ParticleBackground />
 
-      <div className="relative z-10 flex flex-col items-center w-full min-h-screen p-5 pb-16">
-        <div className="w-full max-w-5xl space-y-4 mb-8">
-          <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-            <div>
-              <div className="text-xs uppercase tracking-widest text-blue-400/70">
-                Slide {String(currentSlide + 1).padStart(2, '0')} of {String(totalSlides).padStart(2, '0')}
-              </div>
-              <div className="text-2xl font-semibold text-white">
-                {activeSlideMeta?.title}
-              </div>
-              {activeSlideMeta?.subtitle && (
-                <div className="text-sm text-slate-400 mt-1">
-                  {activeSlideMeta.subtitle}
+      <div className="relative z-10 flex flex-col items-center w-full min-h-screen p-5 pb-16 gap-10">
+        <div className="w-full max-w-4xl">
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-4">
+              <button
+                type="button"
+                onClick={prevSlide}
+                disabled={currentSlide === 0}
+                className="px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold transition-all hover:shadow-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              >
+                Previous
+              </button>
+
+              <div className="flex-1">
+                <div className="flex items-center justify-between text-xs uppercase tracking-widest text-slate-400 mb-2">
+                  <span className="truncate text-blue-300/80">
+                    {activeSlideMeta?.title}
+                  </span>
+                  <span>
+                    {String(currentSlide + 1).padStart(2, '0')} / {String(totalSlides).padStart(2, '0')}
+                  </span>
                 </div>
-              )}
-            </div>
-            <div className="text-xs text-slate-500 md:text-sm">
-              Use ← →, PageUp/PageDown, Home/End, or Space to navigate
-            </div>
-          </div>
+                <div className="w-full h-2 bg-slate-900/70 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transition-all duration-500"
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+                <div className="mt-2 text-[11px] text-slate-500">
+                  Use ← →, PageUp/PageDown, Home/End, or Space to navigate
+                </div>
+              </div>
 
-          <div className="w-full h-2 bg-slate-900/70 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transition-all duration-500"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-
-          <div className="overflow-x-auto">
-            <div className="flex w-full min-w-max gap-2">
-              {slideMetadata.map((metadata) => {
-                const isActive = metadata.index === currentSlide
-                return (
-                  <button
-                    key={metadata.index}
-                    type="button"
-                    onClick={() => goToSlide(metadata.index)}
-                    className={`group px-4 py-2 rounded-full border transition-colors duration-200 ${
-                      isActive
-                        ? 'border-blue-500/80 bg-blue-500/20 text-white shadow-lg shadow-blue-500/20'
-                        : 'border-slate-800 bg-slate-900/60 text-slate-300 hover:border-blue-500/40 hover:text-white'
-                    }`}
-                    aria-current={isActive ? 'step' : undefined}
-                  >
-                    <div className="text-[11px] uppercase tracking-widest text-blue-400/70 group-hover:text-blue-300/80">
-                      {String(metadata.index + 1).padStart(2, '0')}
-                    </div>
-                    <div className="text-sm font-semibold whitespace-nowrap">
-                      {metadata.title}
-                    </div>
-                  </button>
-                )
-              })}
+              <button
+                type="button"
+                onClick={nextSlide}
+                disabled={currentSlide === totalSlides - 1}
+                className="px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold transition-all hover:shadow-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              >
+                Next
+              </button>
             </div>
           </div>
         </div>
@@ -127,14 +114,6 @@ export default function Presentation() {
         <div className="flex-1 flex items-center justify-center w-full">
           <Slide data={slides[currentSlide]} isActive={true} />
         </div>
-
-        <Controls
-          currentSlide={currentSlide}
-          totalSlides={totalSlides}
-          onNext={nextSlide}
-          onPrev={prevSlide}
-          onGoTo={goToSlide}
-        />
       </div>
     </div>
   )
