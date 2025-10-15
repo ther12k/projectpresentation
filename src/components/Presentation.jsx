@@ -94,9 +94,6 @@ export default function Presentation() {
                     style={{ width: `${progress}%` }}
                   />
                 </div>
-                <div className="mt-2 text-[11px] text-slate-500">
-                  Use ← →, PageUp/PageDown, Home/End, or Space to navigate
-                </div>
               </div>
 
               <button

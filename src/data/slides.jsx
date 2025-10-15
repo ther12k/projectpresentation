@@ -109,61 +109,6 @@ export const slides = [
     )
   },
   {
-    navTitle: 'Strategy Reset',
-    showLogo: true,
-    header: {
-      title: '2025 Strategy Reset',
-      subtitle: 'Halotec pivots away from bespoke ERP to reinforce automation leadership'
-    },
-    render: () => (
-      <div className="space-y-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <StatCard number="2003" label="Year founded" />
-          <StatCard number="50+" label="Engineers & specialists" />
-          <StatCard number="3+" label="Flagship port deployments" />
-          <StatCard number="24/7" label="Mission-critical support" />
-        </div>
-
-        <Section title="Why change now">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <HighlightBox title="Refocusing on high-value domains" color="green">
-              <p>
-                Custom ERP work delivered limited margins, frequent scope creep, and distracted teams from Halotec&apos;s competitive core: industrial autogate, M2M integration, and automation stacks.
-              </p>
-              <p>
-                Resources are being reallocated to proven port automation products, recurring services, and modular offerings that scale across sites.
-              </p>
-            </HighlightBox>
-            <HighlightBox title="Strengthening product discipline" color="green">
-              <p>
-                The shift from one-off projects to standardized solutions enables faster replication, predictable delivery, and clearer value propositions for ports, logistics hubs, and industrial campuses.
-              </p>
-              <p>
-                Legacy ERP knowledge remains available for complementary work without diluting the primary growth agenda.
-              </p>
-            </HighlightBox>
-          </div>
-        </Section>
-
-        <Section title="Core solution stack 2025">
-          <div className="flex flex-wrap gap-3">
-            {[
-              'Industrial autogate platforms',
-              'IoT device orchestration',
-              'Sensor & M2M integration',
-              'AI-ready data pipelines',
-              'Operations dashboards',
-              'Cloud & edge coordination',
-              'Lifecycle support services'
-            ].map((item) => (
-              <Badge key={item}>{item}</Badge>
-            ))}
-          </div>
-        </Section>
-      </div>
-    )
-  },
-  {
     navTitle: 'SWOT Snapshot',
     showLogo: true,
     header: {
@@ -228,7 +173,7 @@ export const slides = [
       subtitle: 'Capabilities that anchor Halotec’s competitive edge'
     },
     render: () => (
-      <div className="space-y-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <HighlightBox title="Proven autogate & industrial automation expertise" color="green">
           <p>
             Full-stack deployments at Indonesia&apos;s busiest ports (JICT, KOJA, IPC) demonstrate mastery across software, hardware integration, implementation, and lifecycle support for mission-critical operations.
@@ -280,7 +225,7 @@ export const slides = [
       subtitle: 'Constraints to manage during the transition'
     },
     render: () => (
-      <div className="space-y-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <HighlightBox title="Narrowing market focus" color="orange">
           <p>
             Concentration on industrial autogate and heavy-industry automation limits diversification and ties growth to capital spending cycles in ports, logistics, and manufacturing.
@@ -332,7 +277,7 @@ export const slides = [
       subtitle: 'Growth vectors unlocked by the new focus'
     },
     render: () => (
-      <div className="space-y-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <HighlightBox title="Productization & recurring revenue models" color="blue">
           <p>
             Modularizing autogate components—hardware kits, software modules, managed services—enables repeat sales, subscription revenue, and margin expansion across multiple sites.
@@ -386,7 +331,7 @@ export const slides = [
       subtitle: 'External pressures to monitor closely'
     },
     render: () => (
-      <div className="space-y-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <HighlightBox title="Increasing competition in the niche" color="purple">
           <p>
             National automation efforts attract global integrators and well-capitalized local players who can compete on price, bundled offerings, or brand recognition.
@@ -427,6 +372,61 @@ export const slides = [
             Building financial buffers and a diversified customer base mitigates volatility.
           </p>
         </HighlightBox>
+      </div>
+    )
+  },
+  {
+    navTitle: 'Strategy Reset',
+    showLogo: true,
+    header: {
+      title: '2025 Strategy Reset',
+      subtitle: 'Halotec pivots away from bespoke ERP to reinforce automation leadership'
+    },
+    render: () => (
+      <div className="space-y-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <StatCard number="2003" label="Year founded" />
+          <StatCard number="50+" label="Engineers & specialists" />
+          <StatCard number="3+" label="Flagship port deployments" />
+          <StatCard number="24/7" label="Mission-critical support" />
+        </div>
+
+        <Section title="Why change now">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <HighlightBox title="Refocusing on high-value domains" color="green">
+              <p>
+                Custom ERP work delivered limited margins, frequent scope creep, and distracted teams from Halotec&apos;s competitive core: industrial autogate, M2M integration, and automation stacks.
+              </p>
+              <p>
+                Resources are being reallocated to proven port automation products, recurring services, and modular offerings that scale across sites.
+              </p>
+            </HighlightBox>
+            <HighlightBox title="Strengthening product discipline" color="green">
+              <p>
+                The shift from one-off projects to standardized solutions enables faster replication, predictable delivery, and clearer value propositions for ports, logistics hubs, and industrial campuses.
+              </p>
+              <p>
+                Legacy ERP knowledge remains available for complementary work without diluting the primary growth agenda.
+              </p>
+            </HighlightBox>
+          </div>
+        </Section>
+
+        <Section title="Core solution stack 2025">
+          <div className="flex flex-wrap gap-3">
+            {[
+              'Industrial autogate platforms',
+              'IoT device orchestration',
+              'Sensor & M2M integration',
+              'AI-ready data pipelines',
+              'Operations dashboards',
+              'Cloud & edge coordination',
+              'Lifecycle support services'
+            ].map((item) => (
+              <Badge key={item}>{item}</Badge>
+            ))}
+          </div>
+        </Section>
       </div>
     )
   },
@@ -493,4 +493,3 @@ export const slides = [
     )
   }
 ]
-
