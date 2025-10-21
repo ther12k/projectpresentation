@@ -1,12 +1,25 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import Slide from './Slide'
 import ParticleBackground from './particles/ParticleBackground'
-import { getSlides, languages, defaultLanguage } from '../data/slides'
+import {
+  presentations,
+  getPresentationById,
+  languages,
+  defaultLanguage
+} from '../data/presentations'
 
 export default function Presentation() {
+  const [activePresentationId, setActivePresentationId] = useState(presentations[0]?.id ?? '')
   const [currentSlide, setCurrentSlide] = useState(0)
   const [language, setLanguage] = useState(defaultLanguage)
-  const slides = useMemo(() => getSlides(language), [language])
+  const activePresentation = useMemo(
+    () => getPresentationById(activePresentationId),
+    [activePresentationId]
+  )
+  const slides = useMemo(
+    () => activePresentation.getSlides(language),
+    [activePresentation, language]
+  )
   const totalSlides = slides.length
   const slideMetadata = useMemo(
     () =>
@@ -68,6 +81,10 @@ export default function Presentation() {
     return () => window.removeEventListener('keydown', handleKeyPress)
   }, [goToSlide, nextSlide, prevSlide, totalSlides])
 
+  useEffect(() => {
+    setCurrentSlide(0)
+  }, [activePresentationId, language])
+
   return (
     <div className="relative w-full min-h-screen overflow-hidden bg-slate-950">
       <ParticleBackground />
@@ -75,7 +92,34 @@ export default function Presentation() {
       <div className="relative z-10 flex flex-col items-center w-full min-h-screen p-5 pb-16 gap-10">
         <div className="w-full max-w-4xl">
           <div className="flex flex-col gap-4">
-            <div className="flex flex-wrap items-center justify-end gap-2">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex flex-wrap gap-2">
+                {presentations.map((presentation) => {
+                  const isActive = presentation.id === activePresentation.id
+                  const baseClasses =
+                    'px-3 py-1.5 rounded-full text-xs md:text-sm font-semibold transition-all border'
+                  const activeClasses =
+                    'bg-gradient-to-r from-purple-600 to-pink-600 text-white border-purple-500 shadow-lg'
+                  const inactiveClasses =
+                    'bg-slate-900/70 text-slate-300 border-slate-700 hover:bg-slate-800/80'
+
+                  return (
+                    <button
+                      key={presentation.id}
+                      type="button"
+                      onClick={() => {
+                        if (presentation.id !== activePresentationId) {
+                          setActivePresentationId(presentation.id)
+                        }
+                      }}
+                      className={`${baseClasses} ${isActive ? activeClasses : inactiveClasses}`}
+                      aria-pressed={isActive}
+                    >
+                      {presentation.title}
+                    </button>
+                  )
+                })}
+              </div>
               {languages.map((option) => {
                 const isActive = option.code === language
                 const baseClasses = 'px-3 py-1 rounded-full text-xs md:text-sm font-semibold transition-all border'
@@ -109,14 +153,22 @@ export default function Presentation() {
                 Previous
               </button>
 
-              <div className="flex-1 min-w-[240px]">
-                <div className="flex items-center justify-between text-xs uppercase tracking-widest text-slate-400 mb-2">
-                  <span className="truncate text-blue-300/80">
-                    {activeSlideMeta?.title}
+              <div className="flex-1 min-w-[240px] space-y-1">
+                <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                  <span className="truncate text-pink-200/80 font-semibold">
+                    {activePresentation.title}
                   </span>
-                  <span>
+                  <span className="text-slate-400">
                     {String(currentSlide + 1).padStart(2, '0')} / {String(totalSlides).padStart(2, '0')}
                   </span>
+                </div>
+                {activePresentation.description ? (
+                  <div className="text-[10px] uppercase tracking-[0.25em] text-slate-500">
+                    {activePresentation.description}
+                  </div>
+                ) : null}
+                <div className="text-xs uppercase tracking-widest text-blue-200/80">
+                  {activeSlideMeta?.title}
                 </div>
                 <div className="w-full h-2 bg-slate-900/70 rounded-full overflow-hidden">
                   <div

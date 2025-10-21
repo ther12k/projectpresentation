@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { projects } from "./data/presentationData06oct";
+import { useState, useRef } from "react";
+import { projects } from "./data/presentationData21Oct";
 import { supabaseSlideData } from "./data/supabaseSlideData";
 import PresentationControls from "./components/PresentationControls";
 import {
@@ -22,7 +22,7 @@ const ProjectPresentation = () => {
       type: "title",
       content: {
         title: "Project Status Updates",
-        date: "06 Oktober 2025",
+        date: "21 Oktober 2025",
       },
     },
 
