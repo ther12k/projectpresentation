@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { projects } from "./data/presentationData21Oct";
 import { supabaseSlideData } from "./data/supabaseSlideData";
 import PresentationControls from "./components/PresentationControls";
@@ -12,53 +12,74 @@ import {
 import { Card } from "../../components/ui/card";
 import ProjectStatusAndChallenges from "./components/slides/ProjectStatusAndChallenges";
 import { dbChangeData } from "./data/presentationDataDbChange";
-const ProjectPresentation = () => {
+const ProjectPresentation = ({ variant = "dashboard" }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef(null);
 
-  const slides = [
-    // Title Slide
-    {
-      type: "title",
-      content: {
-        title: "Project Status Updates",
-        date: "21 Oktober 2025",
+  const baseSlides = useMemo(
+    () => [
+      {
+        type: "title",
+        content: {
+          title: "Project Status Updates",
+          date: "21 Oktober 2025",
+        },
       },
-    },
+      {
+        type: "projectStatus",
+        content: {
+          projects: projects.projectStatus,
+        },
+      },
+      {
+        type: "monthlyPlan",
+        content: {
+          items: projects.monthlyPlan,
+        },
+      },
+      {
+        type: "weeklyPlan",
+        content: {
+          plans: projects.weeklyPlan,
+        },
+      },
+    ],
+    []
+  );
 
-    // Project Status Slide
-    {
-      type: "projectStatus",
-      content: {
-        projects: projects.projectStatus,
-      },
-    },
-
-    // Monthly Plan Slide
-    {
-      type: "monthlyPlan",
-      content: {
-        items: projects.monthlyPlan,
-      },
-    },
-
-    // Weekly Plan Slide
-    {
-      type: "weeklyPlan",
-      content: {
-        plans: projects.weeklyPlan,
-      },
-    },
-    {
+  const downtimeSlide = useMemo(
+    () => ({
       type: "downtimeRundown",
       content: dbChangeData,
-    },
-    // Supabase Architecture Slide
-    {
+    }),
+    []
+  );
+
+  const supabaseArchitectureSlide = useMemo(
+    () => ({
       type: "supabase",
       content: supabaseSlideData,
-    },
-  ];
+    }),
+    []
+  );
+
+  const slides = useMemo(() => {
+    switch (variant) {
+      case "downtime":
+        return [downtimeSlide];
+      case "supabase":
+        return [supabaseArchitectureSlide];
+      default:
+        return baseSlides;
+    }
+  }, [baseSlides, downtimeSlide, supabaseArchitectureSlide, variant]);
+
+  useEffect(() => {
+    setCurrentSlide(0);
+    if (slideRef.current) {
+      slideRef.current.scrollTo({ top: 0, behavior: "auto" });
+    }
+  }, [variant]);
 
   const handleSlideChange = (newSlide) => {
     setCurrentSlide(newSlide);
@@ -68,6 +89,9 @@ const ProjectPresentation = () => {
   };
 
   const renderSlide = (slide) => {
+    if (!slide) {
+      return null;
+    }
     switch (slide.type) {
       case "title":
         return <TitleSlide content={slide.content} />;

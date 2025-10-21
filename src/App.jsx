@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Layers } from 'lucide-react'
 import Presentation from './components/Presentation'
 import ProjectPresentation from './features/presentation/ProjectPresentation'
 
 const VIEW_OPTIONS = [
-  { id: 'swot', label: 'SWOT Presentation' },
-  { id: 'project-report', label: 'Project Report' }
+  { id: 'swot', label: 'SWOT Presentation', group: 'primary' },
+  { id: 'project-report', label: 'Project Report', group: 'primary' },
+  { id: 'downtime', label: 'Downtime Rundown', group: 'secondary' },
+  { id: 'supabase', label: 'Supabase Architecture', group: 'secondary' }
 ]
 
 function App() {
@@ -13,6 +15,15 @@ function App() {
   const [isHoveringNav, setIsHoveringNav] = useState(false)
   const [manualNavOpen, setManualNavOpen] = useState(false)
   const navVisible = isHoveringNav || manualNavOpen
+
+  const primaryOptions = useMemo(
+    () => VIEW_OPTIONS.filter((option) => option.group === 'primary'),
+    []
+  )
+  const secondaryOptions = useMemo(
+    () => VIEW_OPTIONS.filter((option) => option.group === 'secondary'),
+    []
+  )
 
   const handleIconClick = () => {
     setManualNavOpen((prev) => {
@@ -29,6 +40,55 @@ function App() {
     }
   }
 
+  const renderActiveView = () => {
+    switch (activeView) {
+      case 'project-report':
+        return <ProjectPresentation variant="dashboard" />
+      case 'downtime':
+        return <ProjectPresentation variant="downtime" />
+      case 'supabase':
+        return <ProjectPresentation variant="supabase" />
+      case 'swot':
+      default:
+        return <Presentation />
+    }
+  }
+
+  const renderOptionButton = (option) => {
+    const isActive = option.id === activeView
+    const baseClasses =
+      'px-4 py-1.5 text-xs md:text-sm font-semibold rounded-full transition-all border whitespace-nowrap'
+    const activeClasses =
+      'bg-gradient-to-r from-blue-600 to-purple-600 text-white border-blue-500 shadow-md'
+    const inactivePrimaryClasses =
+      'bg-slate-900/60 text-slate-300 border-slate-700 hover:bg-slate-800/80'
+    const inactiveSecondaryClasses =
+      'bg-slate-800/60 text-slate-300/80 border-dashed border-slate-700/80 hover:bg-slate-800/80 hover:text-slate-100'
+    const computedClasses = isActive
+      ? activeClasses
+      : option.group === 'secondary'
+        ? inactiveSecondaryClasses
+        : inactivePrimaryClasses
+
+    return (
+      <button
+        key={option.id}
+        type="button"
+        onClick={() => {
+          if (option.id !== activeView) {
+            setActiveView(option.id)
+          }
+          setManualNavOpen(false)
+          setIsHoveringNav(false)
+        }}
+        className={`${baseClasses} ${computedClasses}`}
+        aria-pressed={isActive}
+      >
+        {option.label}
+      </button>
+    )
+  }
+
   return (
     <div className="relative min-h-screen">
       <div
@@ -42,7 +102,7 @@ function App() {
         onFocus={() => setIsHoveringNav(true)}
         onBlur={handleContainerBlur}
       >
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 px-1">
           <button
             type="button"
             onClick={handleIconClick}
@@ -54,43 +114,28 @@ function App() {
           </button>
           <div
             id="view-switcher"
-            className={`flex items-center gap-2 overflow-hidden transition-[max-width,opacity,transform] duration-200 ${
+            className={`flex items-center gap-3 overflow-hidden transition-[max-width,opacity,transform] duration-200 ${
               navVisible
-                ? 'max-w-xl opacity-100 translate-y-0 pointer-events-auto'
+                ? 'max-w-3xl opacity-100 translate-y-0 pointer-events-auto'
                 : 'max-w-0 opacity-0 -translate-y-1 pointer-events-none'
             }`}
           >
-            {VIEW_OPTIONS.map((option) => {
-              const isActive = option.id === activeView
-              const baseClasses =
-                'px-4 py-1.5 text-xs md:text-sm font-semibold rounded-full transition-all border whitespace-nowrap'
-              const activeClasses =
-                'bg-gradient-to-r from-blue-600 to-purple-600 text-white border-blue-500 shadow-md'
-              const inactiveClasses =
-                'bg-slate-900/60 text-slate-300 border-slate-700 hover:bg-slate-800/80'
-
-              return (
-                <button
-                  key={option.id}
-                  type="button"
-                  onClick={() => {
-                    if (option.id !== activeView) {
-                      setActiveView(option.id)
-                    }
-                    setManualNavOpen(false)
-                  }}
-                  className={`${baseClasses} ${isActive ? activeClasses : inactiveClasses}`}
-                  aria-pressed={isActive}
-                >
-                  {option.label}
-                </button>
-              )
-            })}
+            <div className="flex items-center gap-2">
+              {primaryOptions.map((option) => renderOptionButton(option))}
+            </div>
+            {secondaryOptions.length > 0 ? (
+              <div className="flex items-center gap-2 border-l border-slate-700/70 pl-2">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.35em] text-slate-500">
+                  Links
+                </span>
+                {secondaryOptions.map((option) => renderOptionButton(option))}
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
 
-      {activeView === 'project-report' ? <ProjectPresentation /> : <Presentation />}
+      {renderActiveView()}
     </div>
   )
 }
