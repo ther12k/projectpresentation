@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import { projects } from "./data/presentationData21Oct";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { projects } from "./data/presentationData26May";
 import { supabaseSlideData } from "./data/supabaseSlideData";
 import PresentationControls from "./components/PresentationControls";
 import {
@@ -7,7 +7,9 @@ import {
   MonthlyPlanSlide,
   WeeklyPlanSlide,
   SupabaseSlide,
-  DowntimeRundownSlide
+  DowntimeRundownSlide,
+  UnfinishedProjectSlide,
+  HighscopeRefactorSlide
 } from "./components/slides";
 import { Card } from "../../components/ui/card";
 import ProjectStatusAndChallenges from "./components/slides/ProjectStatusAndChallenges";
@@ -16,13 +18,31 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef(null);
 
-  const baseSlides = useMemo(
-    () => [
+  const unfinishedProjectSlides = useMemo(() => {
+    const sourceProjects = projects.unfinishedProjects ?? [];
+    return sourceProjects
+      .filter((project) => {
+        if (typeof project.progress === "number") {
+          return project.progress < 100;
+        }
+        if (project.status) {
+          return project.status.toLowerCase() !== "completed";
+        }
+        return true;
+      })
+      .map((project) => ({
+        type: "unfinishedProject",
+        content: { project },
+      }));
+  }, []);
+
+  const baseSlides = useMemo(() => {
+    return [
       {
         type: "title",
         content: {
           title: "Project Status Updates",
-          date: "21 Oktober 2025",
+          date: "26 May 2026",
         },
       },
       {
@@ -31,6 +51,7 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
           projects: projects.projectStatus,
         },
       },
+      ...unfinishedProjectSlides,
       {
         type: "monthlyPlan",
         content: {
@@ -43,9 +64,14 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
           plans: projects.weeklyPlan,
         },
       },
-    ],
-    []
-  );
+      ...(projects.highscopeRefactor ? [{
+        type: "highscopeRefactor",
+        content: {
+          items: projects.highscopeRefactor,
+        },
+      }] : []),
+    ];
+  }, [unfinishedProjectSlides]);
 
   const downtimeSlide = useMemo(
     () => ({
@@ -81,12 +107,48 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
     }
   }, [variant]);
 
-  const handleSlideChange = (newSlide) => {
+  const handleSlideChange = useCallback((newSlide) => {
     setCurrentSlide(newSlide);
     if (slideRef.current) {
       slideRef.current.scrollTo({ top: 0, behavior: "smooth" });
     }
-  };
+  }, []);
+
+  const goToPrevious = useCallback(() => {
+    handleSlideChange(Math.max(0, currentSlide - 1));
+  }, [currentSlide, handleSlideChange]);
+
+  const goToNext = useCallback(() => {
+    handleSlideChange(Math.min(slides.length - 1, currentSlide + 1));
+  }, [currentSlide, handleSlideChange, slides.length]);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      const target = event.target;
+      const isTypingElement =
+        target instanceof HTMLElement &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.isContentEditable);
+
+      if (isTypingElement) {
+        return;
+      }
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        goToNext();
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        goToPrevious();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [goToNext, goToPrevious]);
 
   const renderSlide = (slide) => {
     if (!slide) {
@@ -97,6 +159,8 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
         return <TitleSlide content={slide.content} />;
       case "projectStatus":
         return <ProjectStatusAndChallenges content={slide.content} />;
+      case "unfinishedProject":
+        return <UnfinishedProjectSlide content={slide.content} />;
       case "monthlyPlan":
         return <MonthlyPlanSlide content={slide.content} />;
       case "weeklyPlan":
@@ -105,6 +169,8 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
         return <SupabaseSlide content={slide.content} />;
       case "downtimeRundown":
         return <DowntimeRundownSlide content={slide.content} />;
+      case "highscopeRefactor":
+        return <HighscopeRefactorSlide content={slide.content} />;
       default:
         return null;
     }
@@ -141,10 +207,8 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
           <PresentationControls
             currentSlide={currentSlide}
             totalSlides={slides.length}
-            onPrevious={() => handleSlideChange(Math.max(0, currentSlide - 1))}
-            onNext={() =>
-              handleSlideChange(Math.min(slides.length - 1, currentSlide + 1))
-            }
+            onPrevious={goToPrevious}
+            onNext={goToNext}
           />
         </div>
       </div>
