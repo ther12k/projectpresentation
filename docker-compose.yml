@@ -1,0 +1,10 @@
+services:
+  app:
+    image: ther12k/m2mhalotec
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8551:80"
+    restart: unless-stopped
+
