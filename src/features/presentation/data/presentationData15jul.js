@@ -3,7 +3,7 @@ export const projects = {
     {
       name: "JICT OCR",
       status: "In Progress",
-      progress: 73.3,
+      progress: 60,
       tasks: [
         { task: "Flexi Tank/EqSp History bug", pic: "Rizky", progress: 80 },
         { task: "Hico/P2 check out", pic: "Rizky/Isra", progress: 100 },
@@ -32,6 +32,7 @@ export const projects = {
       tasks: [
         { task: "Check Xray di OUT/Import", pic: "Rizky", progress: 0 },
         { task: "DG validation", pic: "Rizky", progress: 80 },
+        { task: "Booking validation/warning", pic: "Rizky", progress: 40 },
         { task: "Exit Error Info using OCR Dashboard", pic: "Rizky", progress: 0 },
         { task: "Change Autogate DB password", pic: "Isra", progress: 0 },
       ],
@@ -54,10 +55,10 @@ export const projects = {
     {
       name: "TSJ Autogate",
       status: "In Progress",
-      progress: 80,
+      progress: 95,
       tasks: [
         { task: "Autogate", pic: "Deja", progress: 100 },
-        { task: "UAT", pic: "Deja/David", progress: 60 },
+        { task: "UAT", pic: "Deja/David", progress: 90 },
       ],
       timeline: {
         start: "2025-07-14",
@@ -139,14 +140,14 @@ export const projects = {
       challenges: ["Awaiting feedback for further development"],
     },
     {
-      name: "TO3/MAL Joingate",
+      name: "TO3 Xray",
       status: "In Progress",
-      progress: 98.75,
+      progress: 100,
       tasks: [
-        { task: "API", pic: "Deja", progress: 100 },
-        { task: "CP Gate IN", pic: "Deja", progress: 100 },
-        { task: "MAL CP Gate IN/Reader", pic: "Deja", progress: 100 },
-        { task: "Test & Bugsfixing", pic: "Deja", progress: 95 },
+        { task: "API Integration", pic: "Rizky", progress: 100 },
+        { task: "API Test", pic: "Deja", progress: 100 },
+        { task: "AMS Web - Xray Implementation", pic: "Rizky/Iqbal/Deja", progress: 100 },
+        { task: "Check Xray in Gateway", pic: "Deja", progress: 100 },
       ],
       timeline: {
         start: "2025-07-14",
@@ -163,7 +164,35 @@ export const projects = {
           "2025-07-22": "red",
         },
       },
-      challenges: ["Final testing and bug fixes in progress"],
+      challenges: ["Project completed successfully"],
+    },
+    {
+      name: "TO3/MAL Joingate",
+      status: "In Progress",
+      progress: 95,
+      tasks: [
+        { task: "API", pic: "Deja", progress: 100 },
+        { task: "CP Gate IN", pic: "Deja", progress: 100 },
+        { task: "MAL CP Gate IN/Reader", pic: "Deja", progress: 100 },
+        { task: "Test & Bugsfixing", pic: "Deja", progress: 95 },
+        { task: "Doc", pic: "Deja/Rizky", progress: 80 },
+      ],
+      timeline: {
+        start: "2025-07-14",
+        end: "2025-07-22",
+        schedule: {
+          "2025-07-14": "yellow",
+          "2025-07-15": "yellow",
+          "2025-07-16": "yellow",
+          "2025-07-17": "yellow",
+          "2025-07-18": "green",
+          "2025-07-19": "green",
+          "2025-07-20": "red",
+          "2025-07-21": "red",
+          "2025-07-22": "red",
+        },
+      },
+      challenges: ["Final testing and documentation completion"],
     },
   ],
   monthlyPlan: [
@@ -176,7 +205,8 @@ export const projects = {
         "Finalize TSJ Autogate UAT process.",
         "Address new integration requirements for Kalibaru CA Autogate.",
         "Advance Kemenag SIPPRO server migration and testing.",
-        "Complete final testing for TO3/MAL Joingate.",
+        "Complete final testing for TO3/MAL Joingate and finalize documentation.",
+        "Maintain TO3 Xray system and prepare for production deployment.",
         "Prepare for August project planning and resource allocation.",
       ],
     },
@@ -192,6 +222,7 @@ export const projects = {
         "Kalibaru CA: Work on new integration requirements.",
         "Kemenag SIPPRO: Push server migration to completion.",
         "TO3/MAL: Final testing and bug resolution.",
+        "TO3 Xray: Monitor system performance and prepare deployment.",
       ],
     },
     {
@@ -204,6 +235,7 @@ export const projects = {
         "Kalibaru CA: Complete container info and portal features.",
         "Kemenag SIPPRO: Begin new server testing.",
         "TO3/MAL: Deploy to production if testing passes.",
+        "TO3 Xray: Full production deployment and monitoring.",
       ],
     },
     {
@@ -215,6 +247,7 @@ export const projects = {
         "Kalibaru CA: User acceptance testing for new features.",
         "Team retrospective and August planning.",
         "Documentation updates and knowledge transfer.",
+        "Post-deployment monitoring for all completed projects.",
       ],
     },
   ],
