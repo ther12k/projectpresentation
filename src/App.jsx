@@ -4,8 +4,8 @@ import Presentation from './components/Presentation'
 import ProjectPresentation from './features/presentation/ProjectPresentation'
 
 const VIEW_OPTIONS = [
-  { id: 'swot', label: 'SWOT Presentation', group: 'primary' },
   { id: 'project-report', label: 'Project Report', group: 'primary' },
+  { id: 'swot', label: 'SWOT Presentation', group: 'primary' },
   { id: 'downtime', label: 'Downtime Rundown', group: 'secondary' },
   { id: 'supabase', label: 'Supabase Architecture', group: 'secondary' }
 ]
