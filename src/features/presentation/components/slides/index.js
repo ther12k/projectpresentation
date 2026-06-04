@@ -6,3 +6,5 @@ export { default as WeeklyPlanSlide } from './WeeklyPlanSlide';
 export { default as RepoMigrationUpdateSlide } from './RepoMigrationUpdateSlide';
 export { default as SupabaseSlide } from './SupabaseSlide';
 export { default as DowntimeRundownSlide } from './DowntimeRundownSlide';
+export { default as UnfinishedProjectSlide } from './UnfinishedProjectSlide';
+export { default as HighscopeRefactorSlide } from './HighscopeRefactorSlide';
