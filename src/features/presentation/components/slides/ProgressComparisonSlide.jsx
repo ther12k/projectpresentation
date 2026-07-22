@@ -120,25 +120,40 @@ const ProgressComparisonSlide = ({ content }) => {
 
             {project.issues?.length > 0 && (
               <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-rose-700">
-                  Issues
+                <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-700">
+                  Issues & Updates
                 </p>
                 <ul className="space-y-3">
-                  {project.issues.map((issue, issueIndex) => (
-                    <li
-                      key={issueIndex}
-                      className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3"
-                    >
-                      <p className="text-base font-semibold text-rose-800">
-                        {issue.title}
-                      </p>
-                      {issue.detail && (
-                        <p className="mt-2 text-sm leading-relaxed text-rose-700">
-                          {issue.detail}
+                  {project.issues.map((issue, issueIndex) => {
+                    const isDone = issue.status === "done";
+                    return (
+                      <li
+                        key={issueIndex}
+                        className={`rounded-lg border px-4 py-3 ${
+                          isDone
+                            ? "border-green-200 bg-green-50"
+                            : "border-rose-200 bg-rose-50"
+                        }`}
+                      >
+                        <p
+                          className={`text-base font-semibold ${
+                            isDone ? "text-green-800" : "text-rose-800"
+                          }`}
+                        >
+                          {issue.title}
                         </p>
-                      )}
-                    </li>
-                  ))}
+                        {issue.detail && (
+                          <p
+                            className={`mt-2 text-sm leading-relaxed ${
+                              isDone ? "text-green-700" : "text-rose-700"
+                            }`}
+                          >
+                            {issue.detail}
+                          </p>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </section>
             )}

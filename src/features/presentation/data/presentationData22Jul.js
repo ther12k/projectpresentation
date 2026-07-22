@@ -203,9 +203,10 @@ export const projects = {
       ],
       issues: [
         {
-          title: "Manual Input create GateMovement",
+          title: "Manual Input create GateMovement (DONE)",
           detail:
-            "New task requested by client; manual input create gatemovement has already been done.",
+            "New task requested by client; manual input create gatemovement has already been completed.",
+          status: "done"
         },
       ],
       timeline: {
