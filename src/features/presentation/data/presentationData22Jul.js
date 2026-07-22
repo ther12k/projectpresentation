@@ -46,7 +46,7 @@ export const projects = {
         {
           task: "Validator : Portal for validate",
           pic: "Rizky",
-          progress: 80,
+          progress: 100,
         },
         { task: "Migrasi Server", pic: "Rizky/David", progress: 100 },
         { task: "Test Server baru", pic: "David", progress: 100 },
