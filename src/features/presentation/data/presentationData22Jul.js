@@ -68,6 +68,11 @@ export const projects = {
           detail:
             "New security requirement to install XDR. Akreditasi ETL is still in progress (10%) as we are waiting for data/integration from EMIS.",
         },
+        {
+          title: "Resource Issue: David lacks laptop",
+          detail:
+            "David has no laptop. Proposing that the office rent a laptop from employees, since some employees already have their own laptops.",
+        },
       ],
       timeline: {
         start: "2026-07-18",
@@ -82,7 +87,10 @@ export const projects = {
           "2026-07-24": "yellow",
         },
       },
-      challenges: ["Akreditasi ETL waiting for EMIS data integration"],
+      challenges: [
+        "Akreditasi ETL waiting for EMIS data integration",
+        "David has no laptop. Proposing that the office rent a laptop from employees, since some employees already have their own laptops."
+      ],
     },
     {
       name: "Kalibaru CA : OCR",
