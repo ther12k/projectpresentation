@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { projects } from "./data/presentationData26May";
+import { projects } from "./data/presentationData22Jul";
+import { projects as prevProjects } from "./data/presentationData30Jun";
 import { supabaseSlideData } from "./data/supabaseSlideData";
 import PresentationControls from "./components/PresentationControls";
 import {
@@ -9,11 +10,12 @@ import {
   SupabaseSlide,
   DowntimeRundownSlide,
   UnfinishedProjectSlide,
-  HighscopeRefactorSlide
+  HighscopeRefactorSlide,
+  ProgressComparisonSlide
 } from "./components/slides";
 import { Card } from "../../components/ui/card";
 import ProjectStatusAndChallenges from "./components/slides/ProjectStatusAndChallenges";
-import { dbChangeData } from "./data/presentationDataDbChange";
+import { dbChangeData } from "./data/old/presentationDataDbChange";
 const ProjectPresentation = ({ variant = "dashboard" }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef(null);
@@ -42,7 +44,7 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
         type: "title",
         content: {
           title: "Project Status Updates",
-          date: "26 May 2026",
+          date: "22 July 2026",
         },
       },
       {
@@ -51,6 +53,15 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
           projects: projects.projectStatus,
         },
       },
+      ...projects.projectStatus.map((project) => ({
+        type: "progressComparison",
+        content: {
+          project,
+          prevProject: prevProjects.projectStatus.find(
+            (p) => p.name === project.name
+          ),
+        },
+      })),
       ...unfinishedProjectSlides,
       {
         type: "monthlyPlan",
@@ -159,6 +170,8 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
         return <TitleSlide content={slide.content} />;
       case "projectStatus":
         return <ProjectStatusAndChallenges content={slide.content} />;
+      case "progressComparison":
+        return <ProgressComparisonSlide content={slide.content} />;
       case "unfinishedProject":
         return <UnfinishedProjectSlide content={slide.content} />;
       case "monthlyPlan":

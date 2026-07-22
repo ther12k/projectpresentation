@@ -1,64 +1,3 @@
-
-Claude selesai merespons
-Screenshot from 2026-06-04 12-05-38.png
-Screenshot from 2026-06-04 12-05-31.png
-Screenshot from 2026-06-04 12-05-25.png
-
-export const projects = { projectStatus: [ { name: 'JICT OCR', status: 'In Progress', progress: (100 + 100 + 100 + 90 + 100 + 95 + 100 + 100 + 0) / 9, tasks: [ { task: 'Flexi Tank/EqSp History bug', pic: 'Rizky', progress: 100 }, { task: 'Hico/P2 check o
-
-pasted
-
-update const variable based on new update of attached ss sheet
-
-12:08 PM
-
-Reading the screenshots to understand the updates
-Reading the screenshots to understand the updates
-Here's what I can see from the screenshots. Let me compile all the changes:
-
-Key differences from the screenshots vs the current data:
-
-JICT OCR: New task added — Ubuntu vulnerabilities issues (Isra, 90%), timeline now includes yellow bars (Jun 2-6)
-KOJA OCR: Manual VGM changed from 40% → still 40%, now shown with Rizky/Isra (was Rizky/Isra), yellow timeline Jun 2-6
-Kemenag SIPPRO: New tasks added — Test&Bugfixing (Rizky/David/Iqbal, 95%), Akreditasi ETL (David/Rizky, 10%), yellow bars Jun 2-6
-Indocement Truckscale: New task CP WB (Deja, 40%) added, yellow timeline Jun 3-6
-Kalibaru CA OCR: System Design changed to 100% (was 10%), PIC changed to Rizky, tasks now include CP/CGS Gateway (Deja, 0%) instead of just CP; PIC for DB/OCR tasks changed to Deja/Rizky
-Patimban Autogate: AMS changed 90% → 95% (screenshot shows 95%)
-Timelines: All updated to June 2026 week
-Here's the updated projects.ts:
-
-
-Membuat file, membaca file
-Membuat file, membaca file
-Here's a summary of all the changes applied from the screenshots:
-
-JICT OCR — Added new task: Ubuntu vulnerabilites issues (Isra, 90%). Progress recalculated over 10 tasks.
-
-KOJA OCR — No progress change, but PIC for Manual VGM confirmed as Rizky/Isra.
-
-Kemenag SIPPRO — Two new tasks added: Test&Bugfixing (Rizky/David/Iqbal, 95%) and Akreditasi ETL (David/Rizky, 10%). Progress recalculated over 11 tasks.
-
-Indocement : Truckscale — New task added: CP WB (Deja, 40%). Progress recalculated over 4 tasks.
-
-Patimban : Autogate — AMS updated from 90% → 95%, Docs updated from 90% → 100%.
-
-Kalibaru CA : OCR — System Design updated from 10% → 100%. DB and OCR gateway PICs changed to Deja/Rizky. Last task renamed from CP → CP/CGS Gateway.
-
-All timelines — Updated from May 2026 to June 2026 week (Jun 1–8), with yellow bars on Jun 2–6 where shown.
-
-Monthly/Weekly plans — Updated to reflect June 2026 focus and new tasks.
-
-
-Projects
-TS 
-
-
-
-
-
-
-Claude adalah AI dan bisa keliru. Harap periksa kembali respons.
-Projects · TS
 export const projects = {
   projectStatus: [
     {
@@ -181,7 +120,7 @@ export const projects = {
     {
       name: 'Kemenag SIPPRO',
       status: 'In Progress',
-      progress: (80 + 95 + 100 + 100 + 90 + 90 + 100 + 90 + 50 + 95 + 10) / 11,
+      progress: (80 + 95 + 100 + 100 + 90 + 90 + 100 + 90  + 95 + 10) / 11,
       tasks: [
         { task: 'Validator : Portal for validate', pic: 'Rizky', progress: 80 },
         { task: 'Migrasi Server', pic: 'Rizky/David', progress: 95 },
@@ -191,7 +130,6 @@ export const projects = {
         { task: 'RFC', pic: 'Rizky', progress: 90 },
         { task: 'DoubleDegree, New Lembaga, Akreditasi', pic: 'Rizky/David', progress: 100 },
         { task: 'Lembaga Integrasi', pic: 'Rizky/David', progress: 90 },
-        { task: 'Bugfixing', pic: 'Rizky/David', progress: 50 },
         { task: 'Test&Bugfixing', pic: 'Rizky/David', progress: 95 },
         { task: 'Akreditasi ETL', pic: 'David/Rizky', progress: 10 },
       ],
