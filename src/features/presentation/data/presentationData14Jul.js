@@ -32,6 +32,34 @@ export const projects = {
       challenges: [],
     },
     {
+      name: "JICT Crane OCR",
+      status: "Completed",
+      progress: 100,
+      tasks: [
+        { task: "Deployment to halotec.my.id", pic: "David", progress: 100 },
+      ],
+      issues: [
+        {
+          title: "halotec.my.id disk insufficient",
+          detail: "Server halotec.my.id has insufficient disk space. Using idrivee2 for 10GB free space instead.",
+        },
+      ],
+      timeline: {
+        start: "2026-07-11",
+        end: "2026-07-17",
+        schedule: {
+          "2026-07-11": "red",
+          "2026-07-12": "red",
+          "2026-07-13": "yellow",
+          "2026-07-14": "yellow",
+          "2026-07-15": "yellow",
+          "2026-07-16": "yellow",
+          "2026-07-17": "yellow",
+        },
+      },
+      challenges: [],
+    },
+    {
       name: "Kemenag SIPPRO",
       status: "In Progress",
       progress: (100 + 100 + 100 + 100 + 100 + 100 + 100 + 100 + 10 + 30 + 30) / 11,
@@ -52,6 +80,10 @@ export const projects = {
         {
           title: "David laptop waiting",
           detail: "David doesn't use his own laptop. Proposing to rent from employees who already have their own laptops.",
+        },
+        {
+          title: "XDR request pending PIC response",
+          detail: "XDR installation has been requested to PIC but no response yet.",
         },
       ],
       timeline: {
