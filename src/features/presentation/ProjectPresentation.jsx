@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { projects } from "./data/presentationData22Jul";
+import { projects } from "./data/presentationData14Jul";
 import { projects as prevProjects } from "./data/presentationData30Jun";
 import { supabaseSlideData } from "./data/supabaseSlideData";
 import PresentationControls from "./components/PresentationControls";
@@ -44,7 +44,7 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
         type: "title",
         content: {
           title: "Project Status Updates",
-          date: "22 July 2026",
+          date: "14 July 2026",
         },
       },
       {
