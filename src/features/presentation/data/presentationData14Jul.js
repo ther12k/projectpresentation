@@ -79,7 +79,7 @@ export const projects = {
       issues: [
         {
           title: "David laptop waiting",
-          detail: "David doesn't use his own laptop. Proposing to rent from employees who already have their own laptops.",
+          detail: "David doesn't use his own laptop; waiting for resolution.",
         },
         {
           title: "XDR request pending PIC response",
