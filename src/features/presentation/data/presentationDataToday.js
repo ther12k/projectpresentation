@@ -154,6 +154,20 @@ export const projects = {
           title: "Domestic gate pass mismatch (ETOS request)",
           detail: "Different container for gate-in vs gate-out on domestic transactions. Idea: create a new service for changing gatepass info — ETOS sends a replacement-gatepass message and the Autogate system updates the gatepass for that transaction.",
         },
+        {
+          title: "DNS Timeout (Resolved)",
+          detail: "Experienced DNS timeout issues; resolved by implementing DNS caching.",
+          status: "done",
+        },
+        {
+          title: "PostgreSQL Stuck Connections (Resolved)",
+          detail: "Encountered stuck Postgres connection issues; resolved by deploying PgBouncer connection pooling proxy.",
+          status: "done",
+        },
+        {
+          title: "Slow Query Optimization (In Progress)",
+          detail: "Currently investigating and fixing slow database queries identified in the system.",
+        },
       ],
       timeline: {
         start: "2026-07-21",
