@@ -62,7 +62,7 @@ export const projects = {
     {
       name: "Kemenag SIPPRO",
       status: "In Progress",
-      progress: (100 + 100 + 100 + 100 + 100 + 100 + 100 + 100 + 10 + 30 + 30) / 11,
+      progress: (100 + 100 + 100 + 100 + 100 + 100 + 100 + 100 + 10 + 30) / 10,
       tasks: [
         { task: "Validator : Portal for validate", pic: "Rizky", progress: 100 },
         { task: "Migrasi Server", pic: "Rizky/David", progress: 100 },
@@ -74,7 +74,6 @@ export const projects = {
         { task: "Test&Bugfixing", pic: "Rizky/David", progress: 100 },
         { task: "Akreditasi ETL", pic: "David/Rizky", progress: 10 },
         { task: "Install XDR", pic: "David", progress: 30 },
-        { task: "CGS/OCR service integration", pic: "Deja/Rizky", progress: 30 },
       ],
       issues: [
         {
@@ -104,13 +103,14 @@ export const projects = {
     {
       name: "Kalibaru CA : OCR",
       status: "In Progress",
-      progress: (100 + 80 + 70 + 0 + 70) / 5,
+      progress: (100 + 80 + 70 + 0 + 70 + 30) / 6,
       tasks: [
         { task: "System Design", pic: "Rizky", progress: 100 },
         { task: "DB", pic: "Deja/Rizky", progress: 80 },
         { task: "OCR Cp Api gateway", pic: "Deja/Rizky", progress: 70 },
         { task: "CP/CGS Gateway", pic: "Deja", progress: 0 },
         { task: "Monitoring", pic: "Rizky", progress: 70 },
+        { task: "CGS/OCR service integration", pic: "Deja/Rizky", progress: 30 },
       ],
       timeline: {
         start: "2026-07-11",
@@ -189,7 +189,7 @@ export const projects = {
       tasks: [
         "JICT OCR DG validation & Ubuntu vulnerabilities issues",
         "Kalibaru CA OCR CP/CGS Gateway & Monitoring",
-        "Kemenag SIPPRO Install XDR & CGS/OCR service integration",
+        "Kemenag SIPPRO Install XDR",
         "Kemenag SIPPRO Akreditasi ETL waiting EMIS",
       ],
     },
