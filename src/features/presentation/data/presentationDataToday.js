@@ -41,8 +41,9 @@ export const projects = {
       ],
       issues: [
         {
-          title: "halotec.my.id disk insufficient",
-          detail: "Server halotec.my.id has insufficient disk space. Using idrivee2 for 10GB free space instead.",
+          title: "Crane OCR Migration to Alibaba Cloud (Resolved)",
+          detail: "Server disk insufficient on initial server; resolved by successfully migrating and deploying to Alibaba Cloud.",
+          status: "done",
         },
       ],
       timeline: {
