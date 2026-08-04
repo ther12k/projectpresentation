@@ -106,14 +106,13 @@ export const projects = {
     {
       name: "Kalibaru CA : OCR",
       status: "In Progress",
-      progress: (100 + 80 + 70 + 0 + 70 + 30) / 6,
+      progress: (100 + 100 + 70 + 50 + 90) / 5,
       tasks: [
         { task: "System Design", pic: "Rizky", progress: 100 },
-        { task: "DB", pic: "Deja/Rizky", progress: 80 },
+        { task: "DB", pic: "Deja/Rizky", progress: 100 },
         { task: "OCR Cp Api gateway", pic: "Deja/Rizky", progress: 70 },
-        { task: "CP/CGS Gateway", pic: "Deja", progress: 0 },
-        { task: "Monitoring", pic: "Rizky", progress: 70 },
-        { task: "CGS/OCR service integration", pic: "Deja/Rizky", progress: 30 },
+        { task: "CP / CGS / OCR Service Integration", pic: "Deja/Rizky", progress: 50 },
+        { task: "Monitoring", pic: "Rizky", progress: 90 },
       ],
       timeline: {
         start: "2026-07-21",
