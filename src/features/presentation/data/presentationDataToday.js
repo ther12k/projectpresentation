@@ -37,7 +37,8 @@ export const projects = {
       status: "Completed",
       progress: 100,
       tasks: [
-        { task: "Deployment to halotec.my.id", pic: "David", progress: 100 },
+        { task: "Deployment to Alibaba Cloud", pic: "David", progress: 100 },
+        { task: "Additional view requested by Ali", pic: "David", progress: 100 },
       ],
       issues: [
         {
@@ -65,7 +66,7 @@ export const projects = {
     {
       name: "Kemenag SIPPRO",
       status: "In Progress",
-      progress: (100 + 100 + 100 + 100 + 100 + 100 + 100 + 100 + 10 + 30) / 10,
+      progress: (100 + 100 + 100 + 100 + 100 + 100 + 100 + 100 + 10 + 30 + 0) / 11,
       tasks: [
         { task: "Validator : Portal for validate", pic: "Rizky", progress: 100 },
         { task: "Migrasi Server", pic: "Rizky/David", progress: 100 },
@@ -77,6 +78,7 @@ export const projects = {
         { task: "Test&Bugfixing", pic: "Rizky/David", progress: 100 },
         { task: "Akreditasi ETL", pic: "David/Rizky", progress: 10 },
         { task: "Install XDR", pic: "David", progress: 30 },
+        { task: "RFC: One prodi multi prodi for kerjasama", pic: "Rizky/David", progress: 0 },
       ],
       issues: [
         {
@@ -86,6 +88,10 @@ export const projects = {
         {
           title: "XDR request pending PIC response",
           detail: "XDR installation has been requested to PIC but no response yet.",
+        },
+        {
+          title: "New RFC: Multi-Prodi Kerjasama",
+          detail: "New requirement: one prodi can multi to another prodi for kerjasama.",
         },
       ],
       timeline: {
@@ -107,12 +113,20 @@ export const projects = {
     {
       name: "Kalibaru CA : OCR",
       status: "In Progress",
-      progress: (100 + 100 + 50 + 90) / 4,
+      progress: (100 + 100 + 100 + 95 + 100 + 50) / 6,
       tasks: [
         { task: "System Design", pic: "Rizky", progress: 100 },
         { task: "DB", pic: "Deja/Rizky", progress: 100 },
-        { task: "CP / CGS / OCR Service Integration", pic: "Deja/Rizky", progress: 50 },
-        { task: "Monitoring", pic: "Rizky", progress: 90 },
+        { task: "CP / CGS / OCR Service Integration", pic: "Deja/Rizky", progress: 100 },
+        { task: "Monitoring", pic: "Rizky", progress: 95 },
+        { task: "Deployment using Docker Swarm", pic: "Rizky/David", progress: 100 },
+        { task: "PgBouncer for PG pool", pic: "Rizky/David", progress: 50 },
+      ],
+      issues: [
+        {
+          title: "PgBouncer Connection Pooling (In Progress)",
+          detail: "Setting up PgBouncer for PostgreSQL connection pooling to handle concurrency and connection load.",
+        },
       ],
       timeline: {
         start: "2026-07-21",
@@ -128,16 +142,40 @@ export const projects = {
           "2026-07-28": "yellow",
         },
       },
-      challenges: [
-        "CP/CGS Gateway at 0% — needs CP/CGS integration work",
+      challenges: [],
+    },
+    {
+      name: "Kalibaru CA Autogate",
+      status: "In Progress",
+      progress: (50 + 50 + 50 + 0) / 4,
+      tasks: [
+        { task: "Test signal traffic light at gateout", pic: "Rizky/Deja", progress: 50 },
+        { task: "Traffic counter", pic: "Rizky", progress: 50 },
+        { task: "Test edit manual by postgate officer", pic: "Deja", progress: 50 },
+        { task: "BOS integration (optional)", pic: "Rizky", progress: 0 },
       ],
+      timeline: {
+        start: "2026-07-21",
+        end: "2026-07-28",
+        schedule: {
+          "2026-07-21": "red",
+          "2026-07-22": "red",
+          "2026-07-23": "yellow",
+          "2026-07-24": "yellow",
+          "2026-07-25": "yellow",
+          "2026-07-26": "yellow",
+          "2026-07-27": "yellow",
+          "2026-07-28": "yellow",
+        },
+      },
+      challenges: [],
     },
     {
       name: "Patimban : Autogate",
       status: "In Progress",
       progress: (100 + 100 + 95 + 100 + 100 + 95 + 100 + 100 + 100 + 95 + 90) / 11,
       tasks: [
-        { task: "Gateway API", pic: "Rizky/Deja", progress: 100 },
+        { task: "Gateway API", pic: "Rizky", progress: 100 },
         { task: "Monitoring", pic: "Rizky", progress: 100 },
         { task: "AMS", pic: "Rizky", progress: 95 },
         { task: "IOT", pic: "David/Rizky", progress: 100 },
@@ -165,8 +203,9 @@ export const projects = {
           status: "done",
         },
         {
-          title: "Slow Query Optimization (In Progress)",
-          detail: "Currently investigating and fixing slow database queries identified in the system.",
+          title: "Slow Query Optimization & PgBouncer (Resolved)",
+          detail: "Slow queries optimized and PgBouncer queue active.",
+          status: "done",
         },
       ],
       timeline: {
@@ -183,6 +222,70 @@ export const projects = {
           "2026-07-28": "yellow",
         },
       },
+      challenges: [],
+    },
+    {
+      name: "KOJA OCR",
+      status: "Completed",
+      progress: 100,
+      tasks: [{ task: "DG validation & Manual GateMovement", pic: "Rizky/Isra", progress: 100 }],
+      timeline: { start: "2026-07-21", end: "2026-07-28", schedule: {} },
+      challenges: [],
+    },
+    {
+      name: "TSJ Autogate",
+      status: "In Progress",
+      progress: 95,
+      tasks: [{ task: "Autogate & UAT", pic: "Deja/David", progress: 95 }],
+      timeline: { start: "2026-07-21", end: "2026-07-28", schedule: {} },
+      challenges: [],
+    },
+    {
+      name: "TO3 : Xray",
+      status: "In Progress",
+      progress: 90,
+      tasks: [{ task: "API Integration & AMS Web Xray", pic: "Rizky/David/Deja", progress: 90 }],
+      timeline: { start: "2026-07-21", end: "2026-07-28", schedule: {} },
+      challenges: [],
+    },
+    {
+      name: "TO3/MAL Joingate",
+      status: "In Progress",
+      progress: 90,
+      tasks: [{ task: "API, Gate IN, MAL Booking, Tosnus", pic: "Deja/Rizky", progress: 90 }],
+      timeline: { start: "2026-07-21", end: "2026-07-28", schedule: {} },
+      challenges: [],
+    },
+    {
+      name: "Indocement : Truckscale",
+      status: "Completed",
+      progress: 100,
+      tasks: [{ task: "API, Monitoring, Gate App, CP WB", pic: "Deja", progress: 100 }],
+      timeline: { start: "2026-07-21", end: "2026-07-28", schedule: {} },
+      challenges: [],
+    },
+    {
+      name: "Indocement : Autogate Grobogan",
+      status: "Completed",
+      progress: 100,
+      tasks: [{ task: "IOT", pic: "David", progress: 100 }],
+      timeline: { start: "2026-07-21", end: "2026-07-28", schedule: {} },
+      challenges: [],
+    },
+    {
+      name: "Autogate Pontianak",
+      status: "In Progress",
+      progress: 0,
+      tasks: [{ task: "Re-test on Friday (Jul 25)", pic: "Deja/David", progress: 0 }],
+      timeline: { start: "2026-07-21", end: "2026-07-28", schedule: {} },
+      challenges: [],
+    },
+    {
+      name: "Unigate : Dashboard Monitoring",
+      status: "In Progress",
+      progress: 80,
+      tasks: [{ task: "Client app & Dashboard API", pic: "Deja/Rizky", progress: 80 }],
+      timeline: { start: "2026-07-21", end: "2026-07-28", schedule: {} },
       challenges: [],
     },
   ],

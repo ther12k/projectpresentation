@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { projects } from "./data/presentationDataToday";
-import { projects as prevProjects } from "./data/presentationData30Jun";
+import { projects as prevProjects } from "./data/presentationDataToday";
 import { supabaseSlideData } from "./data/supabaseSlideData";
 import PresentationControls from "./components/PresentationControls";
 import {
