@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { projects } from "./data/presentationDataToday";
-import { projects as prevProjects } from "./data/presentationDataToday";
+import { projects as prevProjects } from "./data/presentationData01Sep";
 import { supabaseSlideData } from "./data/supabaseSlideData";
 import PresentationControls from "./components/PresentationControls";
 import {
@@ -10,12 +10,13 @@ import {
   SupabaseSlide,
   DowntimeRundownSlide,
   UnfinishedProjectSlide,
-  HighscopeRefactorSlide,
-  ProgressComparisonSlide
+  HighscopeRefactorSlide
 } from "./components/slides";
 import { Card } from "../../components/ui/card";
 import ProjectStatusAndChallenges from "./components/slides/ProjectStatusAndChallenges";
+import ProgressComparisonSlide from "./components/slides/ProgressComparisonSlide";
 import { dbChangeData } from "./data/old/presentationDataDbChange";
+
 const ProjectPresentation = ({ variant = "dashboard" }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef(null);
@@ -34,6 +35,7 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
       })
       .map((project) => ({
         type: "unfinishedProject",
+        title: `Unfinished: ${project.name || "Project"}`,
         content: { project },
       }));
   }, []);
@@ -42,19 +44,27 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
     return [
       {
         type: "title",
+        title: "Title Cover",
         content: {
           title: "Project Status Updates",
-          date: "Today",
+          date: new Date().toLocaleDateString("en-GB", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          }),
+          projects: projects.projectStatus,
         },
       },
       {
         type: "projectStatus",
+        title: "Portfolio Overview",
         content: {
           projects: projects.projectStatus,
         },
       },
       ...projects.projectStatus.map((project) => ({
         type: "progressComparison",
+        title: `${project.name}`,
         content: {
           project,
           prevProject: prevProjects.projectStatus.find(
@@ -65,18 +75,21 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
       ...unfinishedProjectSlides,
       {
         type: "monthlyPlan",
+        title: "Monthly Targets",
         content: {
           items: projects.monthlyPlan,
         },
       },
       {
         type: "weeklyPlan",
+        title: "Weekly Commitments",
         content: {
           plans: projects.weeklyPlan,
         },
       },
       ...(projects.highscopeRefactor ? [{
         type: "highscopeRefactor",
+        title: "Highscope Refactor",
         content: {
           items: projects.highscopeRefactor,
         },
@@ -87,6 +100,7 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
   const downtimeSlide = useMemo(
     () => ({
       type: "downtimeRundown",
+      title: "Downtime Rundown",
       content: dbChangeData,
     }),
     []
@@ -95,6 +109,7 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
   const supabaseArchitectureSlide = useMemo(
     () => ({
       type: "supabase",
+      title: "Supabase Architecture",
       content: supabaseSlideData,
     }),
     []
@@ -146,12 +161,18 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
         return;
       }
 
-      if (event.key === "ArrowRight") {
+      if (event.key === "ArrowRight" || event.key === " " || event.key === "PageDown") {
         event.preventDefault();
         goToNext();
-      } else if (event.key === "ArrowLeft") {
+      } else if (event.key === "ArrowLeft" || event.key === "PageUp") {
         event.preventDefault();
         goToPrevious();
+      } else if (event.key === "Home") {
+        event.preventDefault();
+        handleSlideChange(0);
+      } else if (event.key === "End") {
+        event.preventDefault();
+        handleSlideChange(slides.length - 1);
       }
     };
 
@@ -159,7 +180,7 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [goToNext, goToPrevious]);
+  }, [goToNext, goToPrevious, handleSlideChange, slides.length]);
 
   const renderSlide = (slide) => {
     if (!slide) {
@@ -190,75 +211,41 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-      <div className="container mx-auto px-4 py-8 h-screen flex flex-col">
-        {/* Header */}
-        {/* <div className="mb-4">
-          <h1 className="text-2xl font-semibold text-gray-700">Project Status Dashboard</h1>
-          <div className="h-1 w-20 bg-blue-500 mt-2"></div>
-        </div> */}
-
-        {/* Main Content */}
-        <Card className="flex-1 relative rounded-xl shadow-lg overflow-hidden bg-white border-0">
+    <div className="min-h-screen bg-slate-100/70 pt-20 pb-4 sm:pb-6 px-3 sm:px-6 flex flex-col justify-between">
+      <div className="max-w-7xl w-full mx-auto flex-1 flex flex-col h-[calc(100vh-6.5rem)]">
+        {/* Main Presentation Slide Card */}
+        <Card className="flex-1 relative rounded-2xl shadow-xl overflow-hidden bg-white border border-slate-200/80">
           {/* Slide Content with Custom Scrollbar */}
           <div
             ref={slideRef}
-            className="absolute inset-0 overflow-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-400"
+            className="absolute inset-0 overflow-auto scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-slate-100 hover:scrollbar-thumb-slate-400"
             style={{
               scrollbarWidth: "thin",
               msOverflowStyle: "none",
             }}
           >
-            <div className="min-h-full p-6">
-              {renderSlide(slides[currentSlide])}
+            <div className="min-h-full p-6 sm:p-10 pb-16 sm:pb-24 flex flex-col justify-between">
+              <div className="flex-1">
+                {renderSlide(slides[currentSlide])}
+              </div>
+              {/* Bottom buffer to ensure content never touches the bottom edge */}
+              <div className="h-10 sm:h-14 flex-shrink-0 w-full pointer-events-none" aria-hidden="true" />
             </div>
           </div>
         </Card>
 
-        {/* Navigation Controls */}
-        <div className="mt-4">
+        {/* Bottom Floating Navigation Controls */}
+        <div className="mt-3.5 flex-shrink-0">
           <PresentationControls
             currentSlide={currentSlide}
             totalSlides={slides.length}
+            slides={slides}
             onPrevious={goToPrevious}
             onNext={goToNext}
+            onSelectSlide={handleSlideChange}
           />
         </div>
       </div>
-
-      {/* Custom CSS for Webkit Scrollbar */}
-      <style>{`
-        /* Webkit scrollbar styles */
-        ::-webkit-scrollbar {
-          width: 8px;
-          height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-          background: #f1f1f1;
-          border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-          background: #ccc;
-          border-radius: 4px;
-          transition: all 0.2s ease;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-          background: #999;
-        }
-
-        /* Hide scrollbar for non-hover */
-        .scrollbar-hide-default {
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-        }
-
-        .scrollbar-hide-default::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </div>
   );
 };

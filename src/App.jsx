@@ -92,7 +92,7 @@ function App() {
   return (
     <div className="relative min-h-screen">
       <div
-        className="fixed top-4 left-1/2 z-50 -translate-x-1/2 rounded-full border border-slate-800 bg-slate-900/80 p-1.5 shadow-lg backdrop-blur"
+        className="fixed top-3 left-1/2 z-50 -translate-x-1/2 rounded-full border border-slate-800 bg-slate-900/80 p-1.5 shadow-lg backdrop-blur"
         onMouseEnter={() => setIsHoveringNav(true)}
         onMouseLeave={() => {
           if (!manualNavOpen) {

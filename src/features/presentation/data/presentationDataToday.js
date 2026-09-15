@@ -3,7 +3,7 @@ export const projects = {
     {
       name: "JICT OCR",
       status: "In Progress",
-      progress: (100 + 100 + 100 + 90 + 100 + 95 + 100 + 100 + 0 + 95) / 10,
+      progress: (100 + 100 + 100 + 90 + 100 + 95 + 100 + 100 + 0 + 95 + 0) / 11,
       tasks: [
         { task: "Flexi Tank/EqSp History bug", pic: "Rizky", progress: 100 },
         { task: "Hico/P2 check out", pic: "Rizky/Isra", progress: 100 },
@@ -15,6 +15,7 @@ export const projects = {
         { task: "Hico message", pic: "Rizky/Isra", progress: 100 },
         { task: "DG validation", pic: "Rizky/Isra", progress: 0 },
         { task: "Ubuntu vulnerabilities issues", pic: "Isra", progress: 95 },
+        { task: "Update gatein to support static weighbridge", pic: "Deja/Rizky", progress: 0 },
       ],
       timeline: {
         start: "2026-07-21",
@@ -66,7 +67,21 @@ export const projects = {
     {
       name: "Kemenag SIPPRO",
       status: "In Progress",
-      progress: (100 + 100 + 100 + 100 + 100 + 100 + 100 + 100 + 10 + 30 + 0) / 11,
+      progress:
+        (100 +
+          100 +
+          100 +
+          100 +
+          100 +
+          100 +
+          100 +
+          100 +
+          40 +
+          30 +
+          100 +
+          100 +
+          100) /
+        13,
       tasks: [
         { task: "Validator : Portal for validate", pic: "Rizky", progress: 100 },
         { task: "Migrasi Server", pic: "Rizky/David", progress: 100 },
@@ -76,9 +91,11 @@ export const projects = {
         { task: "DoubleDegree, New Lembaga, Akreditasi", pic: "Rizky/David", progress: 100 },
         { task: "Lembaga Integrasi", pic: "Rizky/David", progress: 100 },
         { task: "Test&Bugfixing", pic: "Rizky/David", progress: 100 },
-        { task: "Akreditasi ETL", pic: "David/Rizky", progress: 10 },
+        { task: "Akreditasi ETL", pic: "David/Rizky", progress: 40 },
         { task: "Install XDR", pic: "David", progress: 30 },
-        { task: "RFC: One prodi multi prodi for kerjasama", pic: "Rizky/David", progress: 0 },
+        { task: "RFC: One prodi multi prodi for kerjasama", pic: "Rizky/David", progress: 100 },
+        { task: "RFC perubahan skema untuk pemilihan jenjang sippro program kerjasama", pic: "Rizky/David", progress: 100 },
+        { task: "Update API perubahan bentuk without doc needed on payload", pic: "Rizky/David", progress: 100 },
       ],
       issues: [
         {
@@ -90,8 +107,8 @@ export const projects = {
           detail: "XDR installation has been requested to PIC but no response yet.",
         },
         {
-          title: "New RFC: Multi-Prodi Kerjasama",
-          detail: "New requirement: one prodi can multi to another prodi for kerjasama.",
+          title: "New RFC: Multi-Prodi Kerjasama (Staging)",
+          detail: "Development 100% and deployed to staging; needs testing before production release.",
         },
       ],
       timeline: {
@@ -111,48 +128,36 @@ export const projects = {
       challenges: ["Akreditasi ETL waiting for EMIS data integration"],
     },
     {
-      name: "Kalibaru CA : OCR",
+      name: "Kalibaru CA Autogate",
       status: "In Progress",
-      progress: (100 + 100 + 100 + 95 + 100 + 50) / 6,
+      progress:
+        (100 + 100 + 100 + 95 + 100 + 100 + 100 + 90 + 50 + 0 + 90 + 100 + 40) /
+        13,
       tasks: [
         { task: "System Design", pic: "Rizky", progress: 100 },
         { task: "DB", pic: "Deja/Rizky", progress: 100 },
         { task: "CP / CGS / OCR Service Integration", pic: "Deja/Rizky", progress: 100 },
         { task: "Monitoring", pic: "Rizky", progress: 95 },
         { task: "Deployment using Docker Swarm", pic: "Rizky/David", progress: 100 },
-        { task: "PgBouncer for PG pool", pic: "Rizky/David", progress: 50 },
+        { task: "PgBouncer for PG pool", pic: "Rizky/David", progress: 100 },
+        { task: "Test signal traffic light at gateout", pic: "Rizky/Deja", progress: 100 },
+        { task: "Traffic counter", pic: "Rizky", progress: 90 },
+        { task: "Test edit manual by postgate officer", pic: "Deja", progress: 50 },
+        { task: "BOS integration (optional)", pic: "Rizky", progress: 0 },
+        { task: "Logging Dashboard Grafana (CP, CGS, Jetson — Gate In 01 only)", progress: 90 },
+        { task: "Print slip displayed on kiosk", pic: "Deja", progress: 100 },
+        { task: "Improve gatein time", pic: "Deja/Rizky", progress: 40 },
       ],
       issues: [
         {
-          title: "PgBouncer Connection Pooling (In Progress)",
-          detail: "Setting up PgBouncer for PostgreSQL connection pooling to handle concurrency and connection load.",
+          title: "Traffic counter blocked (waiting Jetson data)",
+          detail: "Traffic counter task is blocked by waiting for data from Jetson.",
         },
-      ],
-      timeline: {
-        start: "2026-07-21",
-        end: "2026-07-28",
-        schedule: {
-          "2026-07-21": "red",
-          "2026-07-22": "red",
-          "2026-07-23": "yellow",
-          "2026-07-24": "yellow",
-          "2026-07-25": "yellow",
-          "2026-07-26": "yellow",
-          "2026-07-27": "yellow",
-          "2026-07-28": "yellow",
+        {
+          title: "PgBouncer Connection Pooling (Resolved)",
+          detail: "PgBouncer for PostgreSQL connection pooling set up to handle concurrency and connection load.",
+          status: "done",
         },
-      },
-      challenges: [],
-    },
-    {
-      name: "Kalibaru CA Autogate",
-      status: "In Progress",
-      progress: (50 + 50 + 50 + 0) / 4,
-      tasks: [
-        { task: "Test signal traffic light at gateout", pic: "Rizky/Deja", progress: 50 },
-        { task: "Traffic counter", pic: "Rizky", progress: 50 },
-        { task: "Test edit manual by postgate officer", pic: "Deja", progress: 50 },
-        { task: "BOS integration (optional)", pic: "Rizky", progress: 0 },
       ],
       timeline: {
         start: "2026-07-21",
@@ -173,7 +178,10 @@ export const projects = {
     {
       name: "Patimban : Autogate",
       status: "In Progress",
-      progress: (100 + 100 + 95 + 100 + 100 + 95 + 100 + 100 + 100 + 95 + 90) / 11,
+      progress:
+        (100 + 100 + 95 + 100 + 100 + 95 + 100 + 100 + 100 + 95 + 100 + 100 +
+          100) /
+        13,
       tasks: [
         { task: "Gateway API", pic: "Rizky", progress: 100 },
         { task: "Monitoring", pic: "Rizky", progress: 100 },
@@ -185,12 +193,15 @@ export const projects = {
         { task: "SIT/UAT", pic: "Rizky", progress: 100 },
         { task: "Deploy server app/db", pic: "Rizky/Isra", progress: 100 },
         { task: "User guide", pic: "Rizky/David", progress: 95 },
-        { task: "Test & Bugsfixing", pic: "Rizky", progress: 90 },
+        { task: "Test & Bugsfixing", pic: "Rizky", progress: 100 },
+        { task: "Update SS for documentation page", pic: "Rizky/David", progress: 100 },
+        { task: "Export to PDF", pic: "Rizky/David", progress: 100 },
       ],
       issues: [
         {
-          title: "Domestic gate pass mismatch (ETOS request)",
-          detail: "Different container for gate-in vs gate-out on domestic transactions. Idea: create a new service for changing gatepass info — ETOS sends a replacement-gatepass message and the Autogate system updates the gatepass for that transaction.",
+          title: "Domestic gate pass mismatch (Postponed)",
+          detail:
+            "Different container for gate-in vs gate-out on domestic transactions. Idea: create a new service for changing gatepass info — ETOS sends a replacement-gatepass message and the Autogate system updates the gatepass for that transaction. Postponed: no new update from the ETOS team.",
         },
         {
           title: "DNS Timeout (Resolved)",
@@ -251,8 +262,11 @@ export const projects = {
     {
       name: "TO3/MAL Joingate",
       status: "In Progress",
-      progress: 90,
-      tasks: [{ task: "API, Gate IN, MAL Booking, Tosnus", pic: "Deja/Rizky", progress: 90 }],
+      progress: (90 + 50) / 2,
+      tasks: [
+        { task: "API, Gate IN, MAL Booking, Tosnus", pic: "Deja/Rizky", progress: 90 },
+        { task: "Server storage cleanup", progress: 50 },
+      ],
       timeline: { start: "2026-07-21", end: "2026-07-28", schedule: {} },
       challenges: [],
     },
