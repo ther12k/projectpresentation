@@ -1,9 +1,12 @@
+// Date this presentation snapshot was created (shown on the title slide, not the runtime date)
+export const presentationDate = "3 November 2026";
+
 export const projects = {
   projectStatus: [
     {
       name: "JICT OCR",
       status: "In Progress",
-      progress: (100 + 100 + 100 + 90 + 100 + 95 + 100 + 100 + 0 + 95 + 0) / 11,
+      progress: (100 + 100 + 100 + 90 + 100 + 95 + 100 + 100 + 0 + 95 + 100) / 11,
       tasks: [
         { task: "Flexi Tank/EqSp History bug", pic: "Rizky", progress: 100 },
         { task: "Hico/P2 check out", pic: "Rizky/Isra", progress: 100 },
@@ -15,7 +18,7 @@ export const projects = {
         { task: "Hico message", pic: "Rizky/Isra", progress: 100 },
         { task: "DG validation", pic: "Rizky/Isra", progress: 0 },
         { task: "Ubuntu vulnerabilities issues", pic: "Isra", progress: 95 },
-        { task: "Update gatein to support static weighbridge", pic: "Deja/Rizky", progress: 0 },
+        { task: "Update gatein to support static weighbridge", pic: "Deja/Rizky", progress: 100 },
       ],
       timeline: {
         start: "2026-07-21",
@@ -76,12 +79,13 @@ export const projects = {
           100 +
           100 +
           100 +
-          40 +
+          10 +
           30 +
           100 +
           100 +
-          100) /
-        13,
+          100 +
+          0) /
+        14,
       tasks: [
         { task: "Validator : Portal for validate", pic: "Rizky", progress: 100 },
         { task: "Migrasi Server", pic: "Rizky/David", progress: 100 },
@@ -91,16 +95,18 @@ export const projects = {
         { task: "DoubleDegree, New Lembaga, Akreditasi", pic: "Rizky/David", progress: 100 },
         { task: "Lembaga Integrasi", pic: "Rizky/David", progress: 100 },
         { task: "Test&Bugfixing", pic: "Rizky/David", progress: 100 },
-        { task: "Akreditasi ETL", pic: "David/Rizky", progress: 40 },
+        { task: "Akreditasi ETL", pic: "David/Rizky", progress: 10 },
         { task: "Install XDR", pic: "David", progress: 30 },
         { task: "RFC: One prodi multi prodi for kerjasama", pic: "Rizky/David", progress: 100 },
         { task: "RFC perubahan skema untuk pemilihan jenjang sippro program kerjasama", pic: "Rizky/David", progress: 100 },
         { task: "Update API perubahan bentuk without doc needed on payload", pic: "Rizky/David", progress: 100 },
+        { task: "LAMEMBA", pic: "Rizky/David", progress: 0 },
       ],
       issues: [
         {
-          title: "David laptop waiting",
-          detail: "David doesn't use his own laptop; waiting for resolution.",
+          title: "David laptop waiting (Resolved)",
+          detail: "David laptop issue has been resolved.",
+          status: "done",
         },
         {
           title: "XDR request pending PIC response",
@@ -109,6 +115,10 @@ export const projects = {
         {
           title: "New RFC: Multi-Prodi Kerjasama (Staging)",
           detail: "Development 100% and deployed to staging; needs testing before production release.",
+        },
+        {
+          title: "LAMEMBA: Waiting for form and next meeting",
+          detail: "LAMEMBA task waiting for form requirements and the next coordination meeting.",
         },
       ],
       timeline: {
@@ -125,26 +135,29 @@ export const projects = {
           "2026-07-28": "yellow",
         },
       },
-      challenges: ["Akreditasi ETL waiting for EMIS data integration"],
+      challenges: [
+        "Akreditasi ETL waiting for EMIS data integration",
+        "LAMEMBA waiting for form and next meeting",
+      ],
     },
     {
       name: "Kalibaru CA Autogate",
       status: "In Progress",
       progress:
-        (100 + 100 + 100 + 95 + 100 + 100 + 100 + 90 + 50 + 0 + 90 + 100 + 40) /
+        (100 + 100 + 100 + 100 + 100 + 100 + 100 + 95 + 50 + 0 + 100 + 100 + 40) /
         13,
       tasks: [
         { task: "System Design", pic: "Rizky", progress: 100 },
         { task: "DB", pic: "Deja/Rizky", progress: 100 },
         { task: "CP / CGS / OCR Service Integration", pic: "Deja/Rizky", progress: 100 },
-        { task: "Monitoring", pic: "Rizky", progress: 95 },
+        { task: "Monitoring", pic: "Rizky", progress: 100 },
         { task: "Deployment using Docker Swarm", pic: "Rizky/David", progress: 100 },
         { task: "PgBouncer for PG pool", pic: "Rizky/David", progress: 100 },
         { task: "Test signal traffic light at gateout", pic: "Rizky/Deja", progress: 100 },
-        { task: "Traffic counter", pic: "Rizky", progress: 90 },
+        { task: "Traffic counter", pic: "Rizky", progress: 95 },
         { task: "Test edit manual by postgate officer", pic: "Deja", progress: 50 },
         { task: "BOS integration (optional)", pic: "Rizky", progress: 0 },
-        { task: "Logging Dashboard Grafana (CP, CGS, Jetson — Gate In 01 only)", progress: 90 },
+        { task: "Logging Dashboard Grafana (CP, CGS, Jetson — Gate In 01 only)", progress: 100 },
         { task: "Print slip displayed on kiosk", pic: "Deja", progress: 100 },
         { task: "Improve gatein time", pic: "Deja/Rizky", progress: 40 },
       ],
@@ -180,8 +193,8 @@ export const projects = {
       status: "In Progress",
       progress:
         (100 + 100 + 95 + 100 + 100 + 95 + 100 + 100 + 100 + 95 + 100 + 100 +
-          100) /
-        13,
+          100 + 100) /
+        14,
       tasks: [
         { task: "Gateway API", pic: "Rizky", progress: 100 },
         { task: "Monitoring", pic: "Rizky", progress: 100 },
@@ -196,12 +209,19 @@ export const projects = {
         { task: "Test & Bugsfixing", pic: "Rizky", progress: 100 },
         { task: "Update SS for documentation page", pic: "Rizky/David", progress: 100 },
         { task: "Export to PDF", pic: "Rizky/David", progress: 100 },
+        { task: "Weighbridge RFID reader tag detection (night issue)", pic: "Rizky/David", progress: 100 },
       ],
       issues: [
         {
           title: "Domestic gate pass mismatch (Postponed)",
           detail:
             "Different container for gate-in vs gate-out on domestic transactions. Idea: create a new service for changing gatepass info — ETOS sends a replacement-gatepass message and the Autogate system updates the gatepass for that transaction. Postponed: no new update from the ETOS team.",
+        },
+        {
+          title: "Weighbridge RFID reader tag detection (Resolved)",
+          detail:
+            "Weighbridge RFID reader was intermittently failing to detect tags, particularly at night. Fixed by reverse engineering the Windows reader app and applying the necessary updates.",
+          status: "done",
         },
         {
           title: "DNS Timeout (Resolved)",
@@ -300,6 +320,17 @@ export const projects = {
       progress: 80,
       tasks: [{ task: "Client app & Dashboard API", pic: "Deja/Rizky", progress: 80 }],
       timeline: { start: "2026-07-21", end: "2026-07-28", schedule: {} },
+      challenges: [],
+    },
+    {
+      name: "Lampung depo",
+      status: "In Progress",
+      progress: (100 + 60) / 2,
+      tasks: [
+        { task: "gathering requirements", pic: "Rizky", progress: 100 },
+        { task: "CP", progress: 60 },
+      ],
+      timeline: { start: "2026-11-03", end: "2026-11-10", schedule: {} },
       challenges: [],
     },
   ],

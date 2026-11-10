@@ -151,61 +151,52 @@ const PresentationControls = ({
         </div>
 
         <div className="flex items-center justify-between px-4 py-2.5 gap-2 sm:gap-4">
-          {/* Left: Outline & Current Slide Title */}
-          <div className="flex items-center gap-2.5 min-w-0 flex-1 justify-start">
-            {onSelectSlide && (
-              <button
-                onClick={() => setShowDrawer(true)}
-                className="flex items-center gap-1.5 px-3 h-9 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-100 hover:text-blue-600 transition flex-shrink-0"
-                title="View outline / jump to slide"
-              >
-                <LayoutGrid className="w-3.5 h-3.5 text-blue-600" />
-                <span className="hidden sm:inline">Outline</span>
-              </button>
-            )}
-
-            <div className="min-w-0 hidden md:flex items-center">
-              <span
-                className="text-xs sm:text-sm font-semibold text-slate-700 truncate max-w-[180px] lg:max-w-[280px]"
-                title={slideTitle}
-              >
-                {slideTitle}
-              </span>
-            </div>
-          </div>
-
-          {/* Center: Navigation Page & Arrows */}
-          <div className="flex items-center gap-2 flex-shrink-0 justify-center">
+          {/* Left: Navigation Arrows & Outline */}
+          <div className="flex items-center gap-1.5">
             <button
               onClick={onPrevious}
               disabled={currentSlide === 0}
-              className="flex items-center justify-center h-9 w-9 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 hover:text-blue-600 active:scale-95 disabled:opacity-35 disabled:hover:bg-white disabled:hover:text-slate-700 transition shadow-2xs"
+              className="flex items-center justify-center h-9 w-9 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-100 hover:text-blue-600 active:scale-95 disabled:opacity-35 disabled:hover:bg-transparent disabled:hover:text-slate-700 transition"
               title="Previous slide (← / PageUp)"
               aria-label="Previous slide"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
 
-            <div className="flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-100/90 rounded-xl border border-slate-200/80 text-xs font-semibold text-slate-800 shadow-2xs select-none">
-              <span className="hidden sm:inline text-slate-500 font-medium">Slide</span>
-              <span className="font-bold tabular-nums text-slate-900">{currentSlide + 1}</span>
-              <span className="text-slate-400 font-normal">/</span>
-              <span className="tabular-nums font-medium text-slate-600">{totalSlides}</span>
-            </div>
-
             <button
               onClick={onNext}
               disabled={currentSlide === totalSlides - 1}
-              className="flex items-center justify-center h-9 w-9 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 hover:text-blue-600 active:scale-95 disabled:opacity-35 disabled:hover:bg-white disabled:hover:text-slate-700 transition shadow-2xs"
+              className="flex items-center justify-center h-9 w-9 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-100 hover:text-blue-600 active:scale-95 disabled:opacity-35 disabled:hover:bg-transparent disabled:hover:text-slate-700 transition"
               title="Next slide (→ / Space / PageDown)"
               aria-label="Next slide"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
+
+            {onSelectSlide && (
+              <button
+                onClick={() => setShowDrawer(true)}
+                className="flex items-center gap-1.5 px-3 h-9 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-100 hover:text-blue-600 transition"
+                title="View outline / jump to slide"
+              >
+                <LayoutGrid className="w-3.5 h-3.5 text-blue-600" />
+                <span className="hidden md:inline">Outline</span>
+              </button>
+            )}
+          </div>
+
+          {/* Center: Slide Counter & Current Slide Title */}
+          <div className="flex items-center gap-2 min-w-0 flex-1 justify-center">
+            <span className="text-xs font-bold text-slate-800 bg-slate-100 px-2.5 py-1 rounded-full whitespace-nowrap">
+              {currentSlide + 1} <span className="text-slate-400 font-normal">/</span> {totalSlides}
+            </span>
+            <span className="text-xs sm:text-sm font-semibold text-slate-700 truncate max-w-[200px] sm:max-w-[340px]">
+              {slideTitle}
+            </span>
           </div>
 
           {/* Right: Shortcuts hint & Fullscreen */}
-          <div className="flex items-center gap-2 flex-1 justify-end">
+          <div className="flex items-center gap-2">
             <div className="hidden lg:flex items-center gap-1 text-[11px] text-slate-400 bg-slate-50 border border-slate-200 px-2.5 py-1 rounded-lg">
               <Keyboard className="w-3.5 h-3.5" />
               <span>Use</span>

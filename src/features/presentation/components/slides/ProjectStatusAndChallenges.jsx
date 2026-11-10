@@ -371,7 +371,7 @@ const ProjectStatusAndChallenges = ({ content }) => {
 
       {/* VIEW 1: Project Status Accordion Cards */}
       {activeView === 'status' && (
-        <div className="space-y-3 pb-8">
+        <div className="space-y-3">
           {filteredProjects.length === 0 ? (
             <div className="text-center py-12 bg-white rounded-2xl border border-slate-200 text-slate-500">
               <Search className="w-8 h-8 mx-auto text-slate-300 mb-2" />
@@ -387,79 +387,77 @@ const ProjectStatusAndChallenges = ({ content }) => {
               return (
                 <div
                   key={index}
-                  className={`bg-white rounded-xl border transition-all duration-200 relative ${
+                  className={`bg-white rounded-xl border transition-all duration-200 overflow-hidden ${
                     isExpanded
                       ? 'border-blue-300 shadow-md ring-1 ring-blue-500/10'
                       : 'border-slate-200 hover:border-slate-300 shadow-2xs'
                   }`}
                 >
-                  {/* Card Header (Sticky & Compact) */}
+                  {/* Card Header */}
                   <div
-                    className={`sticky top-0 z-10 px-3.5 py-2.5 sm:px-4 cursor-pointer select-none transition-colors bg-white/95 backdrop-blur-md ${
-                      isExpanded
-                        ? 'border-b border-slate-200/80 rounded-t-xl shadow-2xs'
-                        : 'rounded-xl hover:bg-slate-50/60'
-                    }`}
+                    className="p-4 cursor-pointer select-none"
                     onClick={() => toggleProject(project.name)}
                   >
-                    <div className="flex items-center justify-between gap-3">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                       {/* Left: Chevron + Project Title + Badges + Subtask count */}
-                      <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                      <div className="flex items-center gap-3 min-w-0">
                         <button
                           type="button"
-                          className="flex-shrink-0 p-1 rounded-md text-slate-400 hover:text-blue-600 transition"
-                          aria-label={isExpanded ? "Collapse project" : "Expand project"}
+                          className="flex-shrink-0 p-1 rounded-lg text-slate-400 hover:text-blue-600 transition"
                         >
                           {isExpanded ? (
-                            <ChevronUp className="w-4 h-4 text-blue-600" />
+                            <ChevronUp className="w-5 h-5 text-blue-600" />
                           ) : (
-                            <ChevronDown className="w-4 h-4 text-slate-500" />
+                            <ChevronDown className="w-5 h-5 text-slate-500" />
                           )}
                         </button>
 
-                        <div className="flex items-center gap-2 min-w-0 flex-wrap">
-                          <h3 className="text-sm sm:text-base font-bold text-slate-900 truncate">
-                            {project.name}
-                          </h3>
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <h3 className="text-base font-bold text-slate-900 truncate">
+                              {project.name}
+                            </h3>
 
-                          <span
-                            className={`text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap ${
-                              isDone
-                                ? 'bg-emerald-100 text-emerald-700'
-                                : 'bg-blue-100 text-blue-700'
-                            }`}
-                          >
-                            {project.status || (isDone ? 'Completed' : 'In Progress')}
-                          </span>
-
-                          {project.challenges?.length > 0 && (
-                            <span className="inline-flex items-center gap-1 text-[10px] font-semibold bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full whitespace-nowrap">
-                              <AlertTriangle className="w-3 h-3 text-amber-600" />
-                              <span>{project.challenges.length} challenge</span>
+                            <span
+                              className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full ${
+                                isDone
+                                  ? 'bg-emerald-100 text-emerald-700'
+                                  : 'bg-blue-100 text-blue-700'
+                              }`}
+                            >
+                              {project.status || (isDone ? 'Completed' : 'In Progress')}
                             </span>
-                          )}
 
-                          <span className="text-[11px] text-slate-400 font-medium whitespace-nowrap hidden sm:inline">
-                            • {project.tasks?.length || 0} subtasks
-                          </span>
+                            {project.challenges?.length > 0 && (
+                              <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full">
+                                <AlertTriangle className="w-3 h-3 text-amber-600" />
+                                <span>{project.challenges.length} challenge</span>
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-xs text-slate-400 mt-0.5">
+                            {project.tasks?.length || 0} subtasks recorded
+                          </p>
                         </div>
                       </div>
 
                       {/* Right: Progress Metric & Bar */}
-                      <div className="flex items-center gap-3 flex-shrink-0 justify-end">
-                        <div className="w-20 sm:w-32 bg-slate-100 rounded-full h-1.5 overflow-hidden hidden sm:block">
-                          <div
-                            className={`h-full rounded-full transition-all duration-500 ${
-                              isDone
-                                ? 'bg-emerald-500'
-                                : 'bg-gradient-to-r from-blue-500 to-indigo-600'
-                            }`}
-                            style={{ width: `${progressPct}%` }}
-                          />
+                      <div className="flex items-center gap-4 sm:min-w-[200px] justify-end">
+                        <div className="flex-1 hidden sm:block">
+                          <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+                            <div
+                              className={`h-full rounded-full transition-all duration-500 ${
+                                isDone
+                                  ? 'bg-emerald-500'
+                                  : 'bg-gradient-to-r from-blue-500 to-indigo-600'
+                              }`}
+                              style={{ width: `${progressPct}%` }}
+                            />
+                          </div>
                         </div>
 
                         <span
-                          className={`text-xs sm:text-sm font-bold font-mono min-w-[36px] text-right ${
+                          className={`text-base font-black font-mono ${
                             isDone ? 'text-emerald-600' : 'text-slate-800'
                           }`}
                         >
@@ -467,11 +465,23 @@ const ProjectStatusAndChallenges = ({ content }) => {
                         </span>
                       </div>
                     </div>
+
+                    {/* Mobile Progress Bar */}
+                    <div className="sm:hidden mt-3">
+                      <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                        <div
+                          className={`h-full rounded-full ${
+                            isDone ? 'bg-emerald-500' : 'bg-blue-600'
+                          }`}
+                          style={{ width: `${progressPct}%` }}
+                        />
+                      </div>
+                    </div>
                   </div>
 
                   {/* Card Body: Task List Breakdown */}
                   {isExpanded && (
-                    <div className="border-t border-slate-100 bg-slate-50/60 p-3.5 sm:p-4 space-y-2 rounded-b-xl">
+                    <div className="border-t border-slate-100 bg-slate-50/60 p-4 space-y-2">
                       {project.tasks?.length === 0 ? (
                         <p className="text-xs text-slate-400 italic">No tasks listed for this project</p>
                       ) : (
@@ -607,7 +617,7 @@ const ProjectStatusAndChallenges = ({ content }) => {
 
       {/* VIEW 3: Timeline Matrix / Sheet View */}
       {activeView === 'sheet' && (
-        <div className="space-y-3 pb-8">
+        <div className="space-y-3">
           <div className="flex items-center justify-between text-xs text-slate-500 px-1">
             <span>Scroll horizontally to inspect daily schedules</span>
             <div className="flex items-center gap-3">

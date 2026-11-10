@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { projects } from "./data/presentationDataToday";
+import { presentationDate } from "./data/presentationDataToday";
 import { projects as prevProjects } from "./data/presentationData01Sep";
 import { supabaseSlideData } from "./data/supabaseSlideData";
 import PresentationControls from "./components/PresentationControls";
@@ -47,11 +48,7 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
         title: "Title Cover",
         content: {
           title: "Project Status Updates",
-          date: new Date().toLocaleDateString("en-GB", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          }),
+          date: presentationDate,
           projects: projects.projectStatus,
         },
       },
@@ -224,12 +221,8 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
               msOverflowStyle: "none",
             }}
           >
-            <div className="min-h-full p-6 sm:p-10 pb-16 sm:pb-24 flex flex-col justify-between">
-              <div className="flex-1">
-                {renderSlide(slides[currentSlide])}
-              </div>
-              {/* Bottom buffer to ensure content never touches the bottom edge */}
-              <div className="h-10 sm:h-14 flex-shrink-0 w-full pointer-events-none" aria-hidden="true" />
+            <div className="min-h-full p-6 sm:p-10 flex flex-col">
+              {renderSlide(slides[currentSlide])}
             </div>
           </div>
         </Card>
