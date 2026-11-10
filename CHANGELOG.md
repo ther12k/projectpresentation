@@ -1,6 +1,12 @@
 # Changelog
 
-## 2026-11-10 — deployed to pp.halotec.my.id
+## 2026-11-10 — title-date hotfix deployed to pp.halotec.my.id
+
+- Updated the active presentation title date to **10 November 2026** and created `presentationData10Nov.js`.
+- Rebuilt and redeployed; public bundle `index-CB6xaxpF.js` verified to contain "10 November 2026" and no stale "3 November 2026".
+- Preserved the previously running container image as `project-presentation:rollback-20261110-before-title-update`.
+
+## 2026-11-10 — app data deployed to pp.halotec.my.id
 
 - **Patimban : Autogate**: weighbridge RFID reader night-detection issue **resolved** (fixed by reverse
   engineering the Windows reader app). Task → 100%, issue marked resolved, challenge removed.

@@ -1,5 +1,5 @@
 // Date this presentation snapshot was created (shown on the title slide, not the runtime date)
-export const presentationDate = "3 November 2026";
+export const presentationDate = "10 November 2026";
 
 export const projects = {
   projectStatus: [
