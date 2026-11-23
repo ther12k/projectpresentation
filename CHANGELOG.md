@@ -6,8 +6,8 @@
 - New project **Smart Umrah** (93.33%): Web app 95%, Android app 95%, Device tracker system 90% (PIC Rizky).
 - Active data now has 15 projects / 68 tasks; unfinished list 21 → **24 open tasks across 11 projects**.
   Deck is 31 slides; Unfinished Tasks is slide #18.
-- Change is in `presentationDataToday.js` only; the `presentationData24Nov.js` snapshot keeps the values it
-  was created with.
+- Both `presentationDataToday.js` and the `presentationData24Nov.js` snapshot carry these values (the snapshot was
+  brought in line with the active data on 2026-11-23, before its date).
 - Rebuilt and redeployed; public bundle `index-DK5rWMwh.js` verified byte-identical to the running container.
 - Kept the previous image as `project-presentation:rollback-20261123-before-smart-umrah`.
 

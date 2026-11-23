@@ -325,12 +325,24 @@ export const projects = {
     {
       name: "Lampung depo",
       status: "In Progress",
-      progress: (100 + 60) / 2,
+      progress: (100 + 95) / 2,
       tasks: [
         { task: "gathering requirements", pic: "Rizky", progress: 100 },
-        { task: "CP", progress: 60 },
+        { task: "CP", progress: 95 },
       ],
       timeline: { start: "2026-11-03", end: "2026-11-10", schedule: {} },
+      challenges: [],
+    },
+    {
+      name: "Smart Umrah",
+      status: "In Progress",
+      progress: (95 + 95 + 90) / 3,
+      tasks: [
+        { task: "Web app", pic: "Rizky", progress: 95 },
+        { task: "Android app", pic: "Rizky", progress: 95 },
+        { task: "Device tracker system", pic: "Rizky", progress: 90 },
+      ],
+      timeline: { start: "2026-11-12", end: "2026-11-24", schedule: {} },
       challenges: [],
     },
   ],
