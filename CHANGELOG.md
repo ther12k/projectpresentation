@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-11-23 — Smart Umrah project + Lampung CP update deployed to pp.halotec.my.id
+
+- **Lampung depo**: CP task 60% → **95%**. Project progress 80% → **97.5%** (only CP remains open).
+- New project **Smart Umrah** (93.33%): Web app 95%, Android app 95%, Device tracker system 90% (PIC Rizky).
+- Active data now has 15 projects / 68 tasks; unfinished list 21 → **24 open tasks across 11 projects**.
+  Deck is 31 slides; Unfinished Tasks is slide #18.
+- Change is in `presentationDataToday.js` only; the `presentationData24Nov.js` snapshot keeps the values it
+  was created with.
+- Rebuilt and redeployed; public bundle `index-DK5rWMwh.js` verified byte-identical to the running container.
+- Kept the previous image as `project-presentation:rollback-20261123-before-smart-umrah`.
+
 ## 2026-11-23 — 24 Nov snapshot + Unfinished Tasks slide deployed to pp.halotec.my.id
 
 - Updated the active presentation title date to **24 November 2026** and created `presentationData24Nov.js`
