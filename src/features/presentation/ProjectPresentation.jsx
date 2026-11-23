@@ -11,6 +11,7 @@ import {
   SupabaseSlide,
   DowntimeRundownSlide,
   UnfinishedProjectSlide,
+  UnfinishedTasksSlide,
   HighscopeRefactorSlide
 } from "./components/slides";
 import { Card } from "../../components/ui/card";
@@ -22,23 +23,43 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef(null);
 
+  // Unfinished tasks are derived from the active task data (progress < 100).
+  // A hand-written `unfinishedProjects` block still wins when a data file has one.
   const unfinishedProjectSlides = useMemo(() => {
-    const sourceProjects = projects.unfinishedProjects ?? [];
-    return sourceProjects
-      .filter((project) => {
-        if (typeof project.progress === "number") {
-          return project.progress < 100;
-        }
-        if (project.status) {
-          return project.status.toLowerCase() !== "completed";
-        }
-        return true;
-      })
-      .map((project) => ({
+    const sourceProjects =
+      projects.unfinishedProjects ??
+      projects.projectStatus
+        .map((project) => ({
+          ...project,
+          tasks: (project.tasks ?? [])
+            .filter((task) => (task.progress ?? 0) < 100)
+            .map((task) => ({
+              title: task.task,
+              assignee: task.pic,
+              progress: task.progress ?? 0,
+              blocker: task.blocker,
+              nextStep: task.nextStep,
+            })),
+        }))
+        .filter((project) => project.tasks.length > 0);
+
+    const openTasks = sourceProjects.reduce(
+      (acc, project) => acc + project.tasks.length,
+      0
+    );
+
+    return [
+      {
+        type: "unfinishedTasks",
+        title: "Unfinished Tasks",
+        content: { projects: sourceProjects, openTasks },
+      },
+      ...sourceProjects.map((project) => ({
         type: "unfinishedProject",
         title: `Unfinished: ${project.name || "Project"}`,
         content: { project },
-      }));
+      })),
+    ];
   }, []);
 
   const baseSlides = useMemo(() => {
@@ -192,6 +213,8 @@ const ProjectPresentation = ({ variant = "dashboard" }) => {
         return <ProgressComparisonSlide content={slide.content} />;
       case "unfinishedProject":
         return <UnfinishedProjectSlide content={slide.content} />;
+      case "unfinishedTasks":
+        return <UnfinishedTasksSlide content={slide.content} />;
       case "monthlyPlan":
         return <MonthlyPlanSlide content={slide.content} />;
       case "weeklyPlan":

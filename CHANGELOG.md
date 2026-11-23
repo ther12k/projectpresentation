@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-11-23 — 24 Nov snapshot + Unfinished Tasks slide deployed to pp.halotec.my.id
+
+- Updated the active presentation title date to **24 November 2026** and created `presentationData24Nov.js`
+  (10 Nov and 03 Nov snapshots left frozen).
+- **Unfinished Tasks** slide (new): one table of every task below 100% across all projects — project, task,
+  PIC, progress — with Open / In Progress / Not Started / Projects Affected counts and a search box.
+  It is derived automatically from `projectStatus`, so it follows task edits with no extra data block.
+- The existing per-project "Unfinished: <project>" slides are fed from the same task data (they were empty
+  because the active data file had no `unfinishedProjects` block). A hand-written `unfinishedProjects`
+  block still takes priority when a data file has one.
+- Deck is now 29 slides (was 21): the Unfinished Tasks list is slide #17.
+- Rebuilt and redeployed; public bundle `index-DyO-KuU9.js` verified byte-identical to the running
+  container, contains "24 November 2026" and no "10 November 2026".
+- Kept the previous image as `project-presentation:rollback-20261123-before-24nov`.
+
 ## 2026-11-10 — title-date hotfix deployed to pp.halotec.my.id
 
 - Updated the active presentation title date to **10 November 2026** and created `presentationData10Nov.js`.
