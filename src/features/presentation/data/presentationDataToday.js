@@ -328,10 +328,16 @@ export const projects = {
       progress: (100 + 95) / 2,
       tasks: [
         { task: "gathering requirements", pic: "Rizky", progress: 100 },
-        { task: "CP", progress: 95 },
+        { task: "CP", progress: 95, blocker: "Waiting API for photo upload" },
+      ],
+      issues: [
+        {
+          title: "CP: Waiting API for photo upload",
+          detail: "CP task is waiting for the photo upload API before it can be completed.",
+        },
       ],
       timeline: { start: "2026-11-03", end: "2026-11-10", schedule: {} },
-      challenges: [],
+      challenges: ["CP waiting for photo upload API"],
     },
     {
       name: "Smart Umrah",

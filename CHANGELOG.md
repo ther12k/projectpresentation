@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-25 — Lampung depo CP photo upload blocker deployed to pp.halotec.my.id
+
+- Added blocker **"Waiting API for photo upload"** to the Lampung depo CP task at 95%.
+- Added the matching project issue and challenge so the blocker appears on the Lampung project slide,
+  Unfinished Tasks list, and portfolio Challenges view.
+- Rebuilt and redeployed; public bundle `index-DcPSHD6t.js` verified byte-identical to the running container.
+- Kept the previous image as `project-presentation:rollback-20261125-before-cp-blocker`.
+
 ## 2026-11-23 — Smart Umrah project + Lampung CP update deployed to pp.halotec.my.id
 
 - **Lampung depo**: CP task 60% → **95%**. Project progress 80% → **97.5%** (only CP remains open).
